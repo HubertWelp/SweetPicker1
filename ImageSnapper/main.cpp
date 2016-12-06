@@ -6,7 +6,8 @@ int main()
 {
 
     cout << "Hello World!" << endl;
-    cout << "Hallo Leute "<< endl;
+    cout << "Hallo Welt "<< endl;
+
 
     return 0;
 }
