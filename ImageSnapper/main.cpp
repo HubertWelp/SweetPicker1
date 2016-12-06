@@ -9,6 +9,28 @@ int main()
     cout << "Hallo Welt "<< endl;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    cout<<"Nils hat schoene Haare"<<endl;
+
     return 0;
 }
 
