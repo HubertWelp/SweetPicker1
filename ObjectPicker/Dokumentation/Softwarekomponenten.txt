@@ -5,5 +5,4 @@ Auflistung´der Softwarekomponenten die benötigt werden um mit dem NAO-Roboter 
 Python:		     Version 2.7.12
 Python NAOqi SDK:    version 2.1.4
 
-
-geschrieben von Daniel Szczebiot
+test
