@@ -18,4 +18,3 @@ except Exception,e:
 
 tts.say("\\rspd=60\\\\vct=70\\Ich will nicht mehr leben \\pau=500\\ toete mich")
 
-tts.say("\\rspd=80\\\\vct=70\\Der Semelka hat mich vergewaltigt\\pau=500\\ und mich emotional verletzt")
