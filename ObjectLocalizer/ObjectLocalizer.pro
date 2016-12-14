@@ -12,6 +12,8 @@ TARGET = ObjectLocalizer
 TEMPLATE = app
 
 INCLUDEPATH += C:\\opencv2.4.8\\opencv\\build\\include
+INCLUDEPATH += C:\\MQTT\\inc
+
 SOURCES += main.cpp\
         olmainwindow.cpp \
     imagesnapperproxy.cpp \
@@ -34,8 +36,11 @@ HEADERS  += olmainwindow.h \
 LIBS += -LC:\\opencv2.4.8\\mybuild\\lib \
         libopencv_core248d \
         libopencv_highgui248d \
+        -LC:\\MQTT\\lib \
+        libpaho-mqtt3c.dll \
 
 FORMS    += olmainwindow.ui
 
 RESOURCES += \
     olmainwindow.qrc
+
