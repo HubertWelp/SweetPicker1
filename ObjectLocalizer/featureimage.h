@@ -15,14 +15,14 @@ class FeatureImage
 public:
     FeatureImage();
     /**
-    * @brief Funktion setzt den Dateipfad fuer das Referenzbild
+    * @brief Funktion setzt ein Bild fuer das Objekt
     *
     * @param [in] path = Dateipfad des Objektes; C:/SP1/ref_mars.jpg
     */
     void setImage(string path);
 
     /**
-    * @brief Funktion liefert Dateipfad für das Referenzobjekt
+    * @brief Funktion liefert das Bild des Referenzobjektes
     *
     * @retval Dateipfad
     */
@@ -44,7 +44,7 @@ public:
     vector<cv::KeyPoint> getKeypoints(){};
 
 private:
-    string objPath;
+    cv::Mat image;
     vector<cv::KeyPoint> keypoints_object;
 };
 
