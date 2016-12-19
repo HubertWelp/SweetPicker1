@@ -19,14 +19,14 @@ public:
     *
     * @param [in] path = Dateipfad des Objektes; C:/SP1/ref_mars.jpg
     */
-    void setImage(string path){this->objPath = path;}
+    void setImage(string path);
 
     /**
     * @brief Funktion liefert Dateipfad für das Referenzobjekt
     *
     * @retval Dateipfad
     */
-    string getImage(){return this->objPath;}
+    cv::Mat getImage();
 
 
     /**
