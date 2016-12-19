@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ObjectLocalizer
 TEMPLATE = app
-
+CONFIG += console
 INCLUDEPATH += C:\\opencv2.4.8\\opencv\\build\\include
 INCLUDEPATH += C:\\MQTT\\inc
 

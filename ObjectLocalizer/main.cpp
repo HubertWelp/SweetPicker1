@@ -3,7 +3,7 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include "mqttnode.h"
-
+#include <iostream>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     //cvNamedWindow("hoffentlichKlapptEs");
     //cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
-
+    std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;
     w.show();
 
