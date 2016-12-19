@@ -31,7 +31,8 @@ HEADERS  += olmainwindow.h \
     objectpickerproxy.h \
     sceneimage.h \
     featureimage.h \
-    detector.h
+    detector.h \
+    convertcvmat.h
 
 LIBS += -LC:\\opencv2.4.8\\mybuild\\lib \
         libopencv_core248d \
