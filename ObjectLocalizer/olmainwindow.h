@@ -15,16 +15,59 @@ public:
     ~OLMainWindow();
 
 private slots:
+
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzTeasers" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein Teasers gegriffen werden soll.
+    *
+    * @param
+    */
     void on_teasersButton_clicked();
 
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzSnickers" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein Snickers gegriffen werden soll.
+    *
+    * @param
+    */
     void on_snickersButton_clicked();
 
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzTwix" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein Twix gegriffen werden soll.
+    *
+    * @param
+    */
     void on_twixButton_clicked();
 
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzDove" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein Dove gegriffen werden soll.
+    *
+    * @param
+    */
     void on_doveButton_clicked();
 
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzBounty" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein Bounty gegriffen werden soll.
+    *
+    * @param
+    */
     void on_bountyButton_clicked();
 
+    /**
+    * @brief    Die Funktion ladet das Referenzbild "referenzMilkyWay" in referenzbildLabel,
+    *           macht alle Buttons inaktiv,
+    *           bestimmt, dass ein MilkyWay gegriffen werden soll.
+    *
+    * @param
+    */
     void on_milkyWayButton_clicked();
 
 
