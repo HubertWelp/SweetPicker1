@@ -37,7 +37,7 @@ void OLMainWindow::on_teasersButton_clicked()
     QString s;
 
 
-    QPixmap pmap(QString(":/Objects/GUITeasers.png")); // windows machine, hence escapes
+    QPixmap pmap(QString(":/Referenzbilder/referenzTeasers.png")); // windows machine, hence escapes
     if (pmap.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else
@@ -64,7 +64,7 @@ void OLMainWindow::on_snickersButton_clicked()
     QString s;
 
 
-    QPixmap snickers(QString(":/Objects/GUISnickers.png")); // windows machine, hence escapes
+    QPixmap snickers(QString(":/Referenzbilder/referenzSnickers.png")); // windows machine, hence escapes
     if (snickers.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else
@@ -90,7 +90,7 @@ void OLMainWindow::on_twixButton_clicked()
     QString s;
 
 
-    QPixmap twix(QString(":/Objects/GUITwix.png")); // windows machine, hence escapes
+    QPixmap twix(QString(":/Referenzbilder/referenzTwix.png")); // windows machine, hence escapes
     if (twix.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else
@@ -114,7 +114,7 @@ void OLMainWindow::on_doveButton_clicked()
     QString s;
 
 
-    QPixmap dove(QString(":/Objects/GUIDove.png")); // windows machine, hence escapes
+    QPixmap dove(QString(":/Referenzbilder/referenzDove.png")); // windows machine, hence escapes
     if (dove.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else
@@ -138,7 +138,7 @@ void OLMainWindow::on_bountyButton_clicked()
     QString s;
 
 
-    QPixmap bounty(QString(":/Objects/GUIBounty.png")); // windows machine, hence escapes
+    QPixmap bounty(QString(":/Referenzbilder/referenzBounty.png")); // windows machine, hence escapes
     if (bounty.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else
@@ -162,7 +162,7 @@ void OLMainWindow::on_milkyWayButton_clicked()
     QString s;
 
 
-    QPixmap pmap(QString(":/Objects/GUIMilkyWay.png")); // windows machine, hence escapes
+    QPixmap pmap(QString(":/Referenzbilder/referenzMilkyWay.png")); // windows machine, hence escapes
     if (pmap.isNull())
         ui->referenzbildLabel->setText("Null pixmap!");
     else

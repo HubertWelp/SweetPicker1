@@ -7,4 +7,12 @@
         <file>GUITeasers.png</file>
         <file>GUITwix.png</file>
     </qresource>
+    <qresource prefix="/Referenzbilder">
+        <file>referenzBounty.png</file>
+        <file>referenzDove.png</file>
+        <file>referenzMilkyWay.png</file>
+        <file>referenzSnickers.png</file>
+        <file>referenzTeasers.png</file>
+        <file>referenzTwix.png</file>
+    </qresource>
 </RCC>
