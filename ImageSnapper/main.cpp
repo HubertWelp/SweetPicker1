@@ -28,8 +28,10 @@ void sleep_ms(int milliseconds) // cross-platform sleep function
 #endif
 }
 
+
 int main()
 {
+
 
     cout << "IMAGESNAPPER" << endl;
 

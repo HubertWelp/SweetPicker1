@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/Objects">
+        <file>GUIBounty.png</file>
+        <file>GUIDove.png</file>
+        <file>GUIMilkyWay.png</file>
+        <file>GUISnickers.png</file>
+        <file>GUITeasers.png</file>
+        <file>GUITwix.png</file>
+    </qresource>
+</RCC>
