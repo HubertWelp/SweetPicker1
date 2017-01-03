@@ -28,8 +28,9 @@ int main(int argc, char *argv[])
 /*** Zum Testen von opencv**********************************/
     cv::Mat mat;
     mat = cv::imread("D:\\Qt_logo.png");
-    cvNamedWindow("hoffentlichKlapptEs");
-    cv::imshow("hoffentlichKlapptEs",mat);
+
+    //cvNamedWindow("hoffentlichKlapptEs");
+    //cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;

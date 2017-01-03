@@ -3,10 +3,14 @@
 
 #include <QCoreApplication>
 #include <iostream>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <opencv/cv.h>
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <QtWidgets/qapplication.h>
+#include <QImage>
 
 #include <QPixmap>
 
@@ -27,6 +31,7 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
 
 }
 
+
 OLMainWindow::~OLMainWindow()
 {
     delete ui;
@@ -36,12 +41,11 @@ void OLMainWindow::on_teasersButton_clicked()
 {
     QString s;
 
+    cv::Mat img;
+    img = cv::imread("D:referenzTeasers.png");
+    QImage bild(img.data, img.cols, img.rows, img.step, QImage::Format_RGB888); //Converts the CV image into Qt standard format
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(bild));//display the image in label
 
-    QPixmap pmap(QString(":/Referenzbilder/referenzTeasers.png")); // windows machine, hence escapes
-    if (pmap.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(pmap);
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein teasers");
     ui->NachrichtentextBrowser->setText(s);
