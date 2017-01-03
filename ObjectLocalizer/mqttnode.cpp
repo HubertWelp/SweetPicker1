@@ -3,17 +3,23 @@
 #include "stdlib.h"
 #include "string.h"
 #include "MQTTClient.h"
+#include <time.h>
 
 #define ADDRESS     "tcp://localhost:1883"          //MQTT-Broker im IT-Labor "tcp://192.168.0.1:8883"
 #define CLIENTID    "ObjectLocalizer"
+#define TOPIC       "THGA/SWT/SweetPicker/Roboterattion/Georg"
 #define QOS         1
 #define TIMEOUT     10000L
+
+using namespace std;
+
 
 MQTTNode::MQTTNode()
 {
     //do nothing
 }
 
+/*** MQTTNode-publisher ***************************************************************************************************/
 void MQTTNode::publish(const char* topic,const char* message)
 {
     printf("Start MQTT publisher\n");
@@ -51,3 +57,86 @@ void MQTTNode::publish(const char* topic,const char* message)
     MQTTClient_destroy(&client);
     //return rc;
 }
+/*** MQTTNode-publisher *** ENDE *******************************************************************************************/
+
+/*** MQTTNode-subscriber ***************************************************************************************************/
+volatile MQTTClient_deliveryToken deliveredtoken;
+int NACHRICHT_ERHALTEN = 0;
+string receive_payload = "";
+
+/*** CALL-BACK-Funktionen **************************************/
+void delivered(void *context, MQTTClient_deliveryToken dt)          //delivered = ausgeliefert
+{
+    printf("Message with token value %d delivery confirmed\n", dt); //Auslieferung der Nachricht wurde bestätigt
+    deliveredtoken = dt;
+}
+
+int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *message)
+{
+    int i;
+    char* payloadptr;
+
+    payloadptr = (char *)message->payload;
+    for(i=0; i<message->payloadlen; i++)
+    {
+        receive_payload += *payloadptr++;       //empfangene Zeichen an receive_payload anhängen
+    }
+    MQTTClient_freeMessage(&message);
+    MQTTClient_free(topicName);
+    NACHRICHT_ERHALTEN = 1;                     //zum Beenden der receive-Methode
+    return 1;
+}
+
+void connlost(void *context, char *cause)
+{
+    printf("\nConnection lost\n");
+    printf("     cause: %s\n", cause);
+}
+/*** CALL-BACK-Funktionen *** ENDE *******************************/
+
+ string MQTTNode::receive(int timeout)
+ {
+     MQTTClient client;
+     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;        //verbindungsoptionen initialisieren
+     int rc;
+     int ch;
+
+     MQTTClient_create(&client, ADDRESS, CLIENTID,          //MQTTClient erzeugen
+         MQTTCLIENT_PERSISTENCE_NONE, NULL);
+     conn_opts.keepAliveInterval = 20;                      //regelmäßiges ping senden um zu merken falls der Broker nicht mehr läuft
+     conn_opts.cleansession = 1;                            //zum sicheren starten von Sitzungen (sessions)
+
+     MQTTClient_setCallbacks(client, NULL, connlost, msgarrvd, delivered);       //setzt den Client in den Multi-Thread-Modus
+
+     if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS)
+     {
+
+         printf("Failed to connect, return code %d\n", rc);
+         exit(-1);
+     }
+
+     printf("Subscribing to topic %s\nfor client %s using QoS%d\n\n", TOPIC, CLIENTID, QOS);
+     MQTTClient_subscribe(client, TOPIC, QOS);              //subscribed ein einziges Thema
+
+     time_t timer, timer2;
+     time(&timer);                                          //schreibt aktuelle Systemzeit in timer
+     do
+     {
+         if(NACHRICHT_ERHALTEN == 1)
+         {
+             break;                                         //beendet die do/while-Schleife falls eine Nachricht eingetroffen ist
+         }
+         time(&timer2);                                     //schreibt aktuelle Systemzeit in timer2
+
+     } while(timer2 != (timer + timeout));                  //beendet die do/while-Schleife falls der timer abgelaufen ist
+     if((timer + timeout) == timer2)                        //ist "true" wenn der timer abgelaufen ist
+     {
+         printf("Keine Nachricht erhalten! \n"
+                "Der Timer von %i Sekunde(n) ist vor eintreffen einer Nachricht abgelaufen \n\n", timeout);
+     }
+
+     MQTTClient_disconnect(client, 10000);
+     MQTTClient_destroy(&client);
+     return receive_payload;                                //empfangene Nachricht (Bei Ablaufen des timers ist receive_payload leer)
+ }
+/*** MQTTNode-subscriber *** ENDE *******************************************************************************************/
