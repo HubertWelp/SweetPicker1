@@ -85,7 +85,7 @@ public:
     *
     * @retval pos = Koordinaten des Punktes
     */
-    vector<cv::Point2f> getCenter();
+    float* getCenter();
 
     /**
     * @brief Funktion gibt die Orientierung des gefundenen Objektes wieder
