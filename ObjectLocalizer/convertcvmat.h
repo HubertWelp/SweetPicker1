@@ -14,6 +14,9 @@
 
 
 #include "opencv2/imgproc/types_c.h"
+#include <opencv/cv.h>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 
 namespace convert {
@@ -87,11 +90,11 @@ namespace convert {
          case QImage::Format_RGB888:
          {
             if ( !inCloneImageData )
-               qWarning() << "ASM::QImageToCvMat() - Conversion requires cloning since we use a temporary QImage";
+            //   qWarning() << "ASM::QImageToCvMat() - Conversion requires cloning since we use a temporary QImage";
 
-            QImage   swapped = inImage.rgbSwapped();
+            QImage swapped = inImage.rgbSwapped();
 
-            return cv::Mat( swapped.height(), swapped.width(), CV_8UC3, const_cast<uchar*>(swapped.bits()), swapped.bytesPerLine() ).clone();
+            return cv::Mat(swapped.height(), swapped.width(), CV_8UC3, const_cast<uchar*>(swapped.bits()), swapped.bytesPerLine() ).clone();
          }
 
          // 8-bit, 1 channel

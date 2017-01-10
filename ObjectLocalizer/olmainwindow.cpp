@@ -1,18 +1,21 @@
 #include "olmainwindow.h"
 #include "ui_olmainwindow.h"
+#include "convertcvmat.h"
+#include "imagesnapperproxy.h"
 
 #include <QCoreApplication>
 #include <iostream>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/imgproc/types_c.h>
-#include <opencv/cv.h>
 
+#include <opencv/cv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+
 #include <QtWidgets/qapplication.h>
 #include <QImage>
-
 #include <QPixmap>
+#include <QThread>
+#include <QTimer>
+
 
 
 OLMainWindow::OLMainWindow(QWidget *parent) :
@@ -41,11 +44,16 @@ void OLMainWindow::on_teasersButton_clicked()
 {
     QString s;
 
-    cv::Mat img;
-    img = cv::imread("D:referenzTeasers.png");
-    QImage bild(img.data, img.cols, img.rows, img.step, QImage::Format_RGB888); //Converts the CV image into Qt standard format
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(bild));//display the image in label
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
 
+    referenzimg = cv::imread("D:referenzTeasers.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+
+    //livebildimg = getImage();
+    //QImage livebild = convert::cvMatToQImage(livebildimg);
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein teasers");
     ui->NachrichtentextBrowser->setText(s);
@@ -68,11 +76,16 @@ void OLMainWindow::on_snickersButton_clicked()
     QString s;
 
 
-    QPixmap snickers(QString(":/Referenzbilder/referenzSnickers.png")); // windows machine, hence escapes
-    if (snickers.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(snickers);
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
+
+    referenzimg = cv::imread("D:referenzSnickers.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+
+    //livebildimg = getImage();
+    //QImage livebild = convert::cvMatToQImage(livebildimg);
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Snickers");
     ui->NachrichtentextBrowser->setText(s);
@@ -93,12 +106,16 @@ void OLMainWindow::on_twixButton_clicked()
 {
     QString s;
 
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
 
-    QPixmap twix(QString(":/Referenzbilder/referenzTwix.png")); // windows machine, hence escapes
-    if (twix.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(twix);
+    referenzimg = cv::imread("D:referenzTwix.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+
+    //livebildimg = getImage();
+    //QImage livebild = convert::cvMatToQImage(livebildimg);
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Twix");
     ui->NachrichtentextBrowser->setText(s);
@@ -118,11 +135,16 @@ void OLMainWindow::on_doveButton_clicked()
     QString s;
 
 
-    QPixmap dove(QString(":/Referenzbilder/referenzDove.png")); // windows machine, hence escapes
-    if (dove.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(dove);
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
+
+    referenzimg = cv::imread("D:referenzDove.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+
+    //livebildimg = getImage();
+    //QImage livebild = convert::cvMatToQImage(livebildimg);
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Dove");
     ui->NachrichtentextBrowser->setText(s);
@@ -142,11 +164,16 @@ void OLMainWindow::on_bountyButton_clicked()
     QString s;
 
 
-    QPixmap bounty(QString(":/Referenzbilder/referenzBounty.png")); // windows machine, hence escapes
-    if (bounty.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(bounty);
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
+
+    referenzimg = cv::imread("D:referenzBounty.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+
+    //livebildimg = getImage();
+    //QImage livebild = convert::cvMatToQImage(livebildimg);
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Bounty");
     ui->NachrichtentextBrowser->setText(s);
@@ -164,16 +191,29 @@ void OLMainWindow::on_bountyButton_clicked()
 void OLMainWindow::on_milkyWayButton_clicked()
 {
     QString s;
+    QString a;
+    QString b;
 
 
-    QPixmap pmap(QString(":/Referenzbilder/referenzMilkyWay.png")); // windows machine, hence escapes
-    if (pmap.isNull())
-        ui->referenzbildLabel->setText("Null pixmap!");
-    else
-        ui->referenzbildLabel->setPixmap(pmap);
+    cv::Mat livebildimg;
+    cv::Mat referenzimg;
 
-    s.sprintf("In Kürze erhalten Sie vom Roboter ein MilkyWay");
-    ui->NachrichtentextBrowser->setText(s);
+    referenzimg = cv::imread("D:referenzMilkyWay.png");
+    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
+    a.sprintf("Nun erscheint das Referenzbild vom MilkyWay im referenzbildlabel\n");
+    ui->NachrichtentextBrowser->setText(a);
+
+
+    // livebildimg = cv::imread("D:referenzMilkyWay.png");
+    // QImage livebild = convert::cvMatToQImage(livebildimg);
+    // ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    b.sprintf("Nun erscheint das livebildbild der Szene im livebildlabel\n");
+    ui->NachrichtentextBrowser->setText(a+b);
+
+
+    s.sprintf("In Kürze erhalten Sie vom Roboter ein MilkyWay\n");
+    ui->NachrichtentextBrowser->setText(a+b+s);
 
     ui->bountyButton->setEnabled(false);
     ui->snickersButton->setEnabled(false);
