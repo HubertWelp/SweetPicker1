@@ -16,14 +16,13 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
         parsed_msg = json.loads(msg)
-
-        #für jede aktion i in Aktionen[] mache
-                if Aktionen[i] == 'Sprechen'
-                        #try except ALtts
-                if Aktionen[i] == 'Zeigen'
-                        ObjectPicker_zeigen(parsed_msg['Distanz'],parsed_msg['PolarWikel'],parse_msg['RotWinkel'])
-                if Aktionen[i] == null
-                        return 0
+		if Aktion == 'Sprechen'
+			#try except ALtts
+		if Aktion == 'Zeigen'
+			ObjectPicker_zeigen(parsed_msg['Distanz'],parsed_msg['PolarWikel'],parse_msg['RotWinkel'])
+		else 
+			print "Aktion ist nicht definiert"
+			sys.exit(1)
 
 def ObjectPicker_publish(Topic,msg)
 

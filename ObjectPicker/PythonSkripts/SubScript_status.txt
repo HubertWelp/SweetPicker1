@@ -1,0 +1,5 @@
+PostureReset.py					GREEN
+mqttpublisher.py				YELLOW
+ObjectPicker.py					YELLOW
+subscribe.py					YELLOW
+connect.py						GREEN

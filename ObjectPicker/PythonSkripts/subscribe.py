@@ -10,12 +10,12 @@ def on_connect(client, userdata, rc):
 	print("Connected with result code "+str(rc))
 # Subscribing in on_connect() means that if we lose the connection and
 # reconnect then subscriptions will be renewed.
-	client.subscribe("SP1/Koordinaten")
+	client.subscribe("THGA/SWT/SweetPicker/Roboteraktionen/Georg")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	try:
-		tts = ALProxy("ALTextToSpeech", "192.168.0.21", 9559)
+		tts = ALProxy("ALTextToSpeech", "192.168.0.79", 9559)
 	except Exception,e:
 		print "Could not create proxy to ALTextToSpeech"
 		print "Error was: ",e
