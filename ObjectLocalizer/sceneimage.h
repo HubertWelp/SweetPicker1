@@ -21,12 +21,12 @@ public:
     *
     * @param [in] path = Dateipfad der Szene; C:/SP1/scene.jpg
     */
-    void setImage(string path);
+    void setImage(cv::Mat img);
 
     /**
-    * @brief Funktion liefert Dateipfad für die Szene
+    * @brief Funktion liefert das Bild der Szene
     *
-    * @retval Dateipfad
+    * @retval Szenenbild
     */
     cv::Mat getImage();
 
@@ -59,10 +59,26 @@ public:
     * @retval Dateipfad
     */
     PositionT getPosition();
+
+    /**
+    * @brief Funktion setzt den Descriptor fuer die Szene
+    *
+    * @param [in] descriptors = zu setzender Descriptor
+    */
+    void setDescriptor(cv::Mat descriptor);
+
+    /**
+    * @brief Funktion liefert den Descriptor der Szene
+    *
+    * @retval Descriptor der Szene
+    */
+    cv::Mat getDescriptor();
+
 private:
     cv::Mat image;
     vector<cv::KeyPoint> keypoints_scene;
     PositionT position;
+    cv::Mat descriptors_scene;
 };
 
 #endif // SCENEIMAGE_H

@@ -4,9 +4,9 @@ FeatureImage::FeatureImage()
 {
 }
 
-void FeatureImage::setImage(string path)
+void FeatureImage::setImage(cv::Mat img)
 {
-    this->image = cv::imread(path,CV_LOAD_IMAGE_COLOR);
+    this->image = img;
 }
 
 cv::Mat FeatureImage::getImage()
@@ -22,4 +22,14 @@ void FeatureImage::setKeypoints(vector<cv::KeyPoint> keypoints)
 vector<cv::KeyPoint> FeatureImage::getKeypoints()
 {
     return this->keypoints_object;
+}
+
+void FeatureImage::setDescriptor(cv::Mat descriptor)
+{
+    this->descriptors_obj = descriptor;
+}
+
+cv::Mat FeatureImage::getDescriptor()
+{
+    return this->descriptors_obj;
 }

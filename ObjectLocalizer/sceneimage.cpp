@@ -3,9 +3,9 @@
 SceneImage::SceneImage()
 {
 }
-void SceneImage::setImage(string path)
+void SceneImage::setImage(cv::Mat img)
 {
-    this->image = cv::imread(path,CV_LOAD_IMAGE_COLOR);
+    this->image = img;
 }
 
 cv::Mat SceneImage::getImage()
@@ -31,4 +31,14 @@ void SceneImage::setPosition(PositionT pos)
 PositionT  SceneImage::getPosition()
 {
     return this->position;
+}
+
+void SceneImage::setDescriptor(cv::Mat descriptor)
+{
+    this->descriptors_scene = descriptor;
+}
+
+cv::Mat SceneImage::getDescriptor()
+{
+    return this->descriptors_scene;
 }
