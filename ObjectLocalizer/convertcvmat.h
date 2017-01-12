@@ -60,7 +60,7 @@ namespace convert {
          }
 
          default:
-            qWarning() << "ASM::cvMatToQImage() - cv::Mat image type not handled in switch:" << inMat.type();
+          //  qWarning() << "ASM::cvMatToQImage() - cv::Mat image type not handled in switch:" << inMat.type();
             break;
       }
 
@@ -94,7 +94,7 @@ namespace convert {
 
             QImage swapped = inImage.rgbSwapped();
 
-            return cv::Mat(swapped.height(), swapped.width(), CV_8UC3, const_cast<uchar*>(swapped.bits()), swapped.bytesPerLine() ).clone();
+       //     return cv::Mat(swapped.height(), swapped.width(), CV_8UC3, const_cast<uchar*>(swapped.bits()), swapped.bytesPerLine() ).clone();
          }
 
          // 8-bit, 1 channel
@@ -106,7 +106,7 @@ namespace convert {
          }
 
          default:
-            qWarning() << "ASM::QImageToCvMat() - QImage format not handled in switch:" << inImage.format();
+        //    qWarning() << "ASM::QImageToCvMat() - QImage format not handled in switch:" << inImage.format();
             break;
       }
 
