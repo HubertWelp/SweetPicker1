@@ -5,6 +5,7 @@
 #include "mqttnode.h"
 #include <iostream>
 #include <string>
+#include "detector.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,23 @@ int main(int argc, char *argv[])
 
     //cvNamedWindow("hoffentlichKlapptEs");
     //cv::imshow("hoffentlichKlapptEs",mat);
+/***********************************************************/
+
+/*** Test des Detectors*************************************
+    FeatureImage objTest;
+    SceneImage scnTest;
+    Detector detect;
+    objTest.setImage(cv::imread("referenzTwix.png"));
+
+    detect.findKeypoints(objTest);
+    scnTest.setImage(cv::imread("sceneTest.bmp"));
+
+    detect.findKeypoints(scnTest);
+
+    detect.compare(objTest, scnTest);
+
+    cv::imshow("TEST DETECTOR", cv::imread("C:\\Qt\\sceneTEST.bmp"));
+
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;
