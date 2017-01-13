@@ -21,8 +21,14 @@ def on_message(client, userdata, msg):
 #try except ALtts	
 #if Aktionen == 'Zeigen'
         print(msg)
-        #ObjectPicker_zeigen(parsed_msg['Distanz'],parsed_msg['PolarWikel'],parse_msg['RotWinkel'])
-
+        Distanz = parsed_msg['Distanz']
+        PolarWinkel = parsed_msg['PolarWinkel']
+        RotWinkel = parsed_msg['RotWinkel']
+        ObjectPicker_zeigen(Distanz, PolarWikel, RotWinkel)
+        print (Distanz)
+        print (PolarWinkel)
+        print (RotWinkel)
+        
 #else
         #print "Aktion ist nicht definiert"
         #sys.exit(1)
@@ -56,7 +62,9 @@ def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel):
 	
 
 	
-	
+Distanz = "Default"
+PolarWinkel = "PolarWinkel"
+RotWinkel = "RotWinkel"
 brokerIp = "192.168.0.1"
 brokerPort = "8883"
 naoIp = "192.168.0.79"
