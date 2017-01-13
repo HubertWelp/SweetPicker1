@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "detector.h"
+#include "imagesnapperproxy.h"
 
 int main(int argc, char *argv[])
 {
@@ -34,21 +35,22 @@ int main(int argc, char *argv[])
     //cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
 
-/*** Test des Detectors*************************************
+/*** Test des Detectors*************************************/
     FeatureImage objTest;
     SceneImage scnTest;
     Detector detect;
+    ImageSnapperProxy snapper;
+
     objTest.setImage(cv::imread("referenzTwix.png"));
 
     detect.findKeypoints(objTest);
-    scnTest.setImage(cv::imread("sceneTest.bmp"));
-
-    detect.findKeypoints(scnTest);
-
-    detect.compare(objTest, scnTest);
-
-    cv::imshow("TEST DETECTOR", cv::imread("C:\\Qt\\sceneTEST.bmp"));
-
+    scnTest.setImage(snapper.getImage());
+//
+//    detect.findKeypoints(scnTest);
+//
+//    detect.compare(objTest, scnTest);
+//
+//    cv::imshow("TEST",scnTest.getImage()); // <----
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;
