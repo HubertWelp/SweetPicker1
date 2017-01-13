@@ -16,17 +16,20 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
         parsed_msg = json.loads(msg)
-		if Aktion == 'Sprechen'
-			#try except ALtts
-		if Aktion == 'Zeigen'
-			ObjectPicker_zeigen(parsed_msg['Distanz'],parsed_msg['PolarWikel'],parse_msg['RotWinkel'])
-		else 
-			print "Aktion ist nicht definiert"
-			sys.exit(1)
 
-def ObjectPicker_publish(Topic,msg)
+#if Aktion == 'Sprechen'
+#try except ALtts	
+#if Aktionen == 'Zeigen'
+        print(msg)
+        #ObjectPicker_zeigen(parsed_msg['Distanz'],parsed_msg['PolarWikel'],parse_msg['RotWinkel'])
 
-        callstring = "mqttpublisher.py"+" "+brokerIP+" "+brokerPort+" "+Topic+" "+msg
+#else
+        #print "Aktion ist nicht definiert"
+        #sys.exit(1)
+
+def ObjectPicker_publish(Topic,msg):
+
+        callstring = "mqttpublisher.py"+" "+brokerIp+" "+brokerPort+" "+Topic+" "+msg
         try:
 		os.system(callstring)
 	except Exception,e:
@@ -41,7 +44,7 @@ def ObjectPicker_reset():
 	except Exception,e:
 		print "Konnte das reset_Skript nicht starten"
 		print "Error war:  ",e
-def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel)
+def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel):
         try:
                 callstring = "Zeiger.py"+" "+Distanz+" "+PolarWinkel
                 os.system(callstring)
@@ -56,10 +59,10 @@ def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel)
 	
 brokerIp = "192.168.0.1"
 brokerPort = "8883"
-naoIp = "192.168.0.21"
+naoIp = "192.168.0.79"
 naoPort = 9559
 ObjectPicker_reset()
-client = mqtt.Client()
+client = mqtt.Client("Georg")
 client.on_connect = on_connect
 client.on_message = on_message
 client.connect(brokerIp, brokerPort, 60)
