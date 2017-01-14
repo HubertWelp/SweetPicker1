@@ -7,6 +7,7 @@
 #include <string>
 #include "detector.h"
 #include "imagesnapperproxy.h"
+#include "objectpickerproxy.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,8 +32,8 @@ int main(int argc, char *argv[])
     cv::Mat mat;
     mat = cv::imread("D:\\Qt_logo.png");
 
-    //cvNamedWindow("hoffentlichKlapptEs");
-    //cv::imshow("hoffentlichKlapptEs",mat);
+//    cvNamedWindow("hoffentlichKlapptEs");
+//    cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
 
 /*** Test des Detectors*************************************/
@@ -40,17 +41,22 @@ int main(int argc, char *argv[])
     SceneImage scnTest;
     Detector detect;
     ImageSnapperProxy snapper;
+    ObjectPickerProxy picker;
 
+    //Referenz laden
     objTest.setImage(cv::imread("referenzTwix.png"));
-
     detect.findKeypoints(objTest);
-    scnTest.setImage(snapper.getImage());
-//
-//    detect.findKeypoints(scnTest);
-//
-//    detect.compare(objTest, scnTest);
-//
-//    cv::imshow("TEST",scnTest.getImage()); // <----
+    //Scene laden
+    //scnTest.setImage(snapper.getImage());
+    scnTest.setImage(cv::imread("C:\\Benutzer\\Kai\\Bilder\\minaundkai.png)"));
+
+    detect.findKeypoints(scnTest);
+
+    //Vergleich
+    detect.compare(objTest, scnTest);
+
+    cv::imshow("TEST",scnTest.getImage());
+    picker.pick();
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;

@@ -21,7 +21,7 @@ public:
     *
     * @retval Dateipfad
     */
-    void pick(string center){};
+    void pick(){};
 };
 
 #endif // OBJECTPICKERPROXY_H
