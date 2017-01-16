@@ -45,15 +45,15 @@ void OLMainWindow::on_teasersButton_clicked()
     QString s;
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzTeasers.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+    referenzbild.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
 
-    //livebildimg = getImage();
-    //QImage livebild = convert::cvMatToQImage(livebildimg);
-    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein teasers");
     ui->NachrichtentextBrowser->setText(s);
@@ -77,15 +77,16 @@ void OLMainWindow::on_snickersButton_clicked()
 
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzSnickers.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+
+    referenzbild.load(":/Referenzbilder/referenzSnickers.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
 
-    //livebildimg = getImage();
-    //QImage livebild = convert::cvMatToQImage(livebildimg);
-    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Snickers");
     ui->NachrichtentextBrowser->setText(s);
@@ -107,15 +108,16 @@ void OLMainWindow::on_twixButton_clicked()
     QString s;
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzTwix.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+
+    referenzbild.load(":/Referenzbilder/referenzTwix.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
 
-    //livebildimg = getImage();
-    //QImage livebild = convert::cvMatToQImage(livebildimg);
-    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Twix");
     ui->NachrichtentextBrowser->setText(s);
@@ -136,15 +138,16 @@ void OLMainWindow::on_doveButton_clicked()
 
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzDove.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+
+    referenzbild.load(":/Referenzbilder/referenzDove.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
 
-    //livebildimg = getImage();
-    //QImage livebild = convert::cvMatToQImage(livebildimg);
-    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Dove");
     ui->NachrichtentextBrowser->setText(s);
@@ -165,15 +168,16 @@ void OLMainWindow::on_bountyButton_clicked()
 
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzBounty.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+
+    referenzbild.load(":/Referenzbilder/referenzBounty.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
 
-    //livebildimg = getImage();
-    //QImage livebild = convert::cvMatToQImage(livebildimg);
-    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
 
     s.sprintf("In Kürze erhalten Sie vom Roboter ein Bounty");
     ui->NachrichtentextBrowser->setText(s);
@@ -196,18 +200,19 @@ void OLMainWindow::on_milkyWayButton_clicked()
 
 
     cv::Mat livebildimg;
-    cv::Mat referenzimg;
+    QImage referenzbild;
+    ImageSnapperProxy isp;
 
-    referenzimg = cv::imread("D:referenzMilkyWay.png");
-    QImage referenzbild = convert::cvMatToQImage(referenzimg);
+
+    referenzbild.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbild));//display the image in referenzbildlabel
     a.sprintf("Nun erscheint das Referenzbild vom MilkyWay im referenzbildlabel\n");
     ui->NachrichtentextBrowser->setText(a);
 
 
-    // livebildimg = cv::imread("D:referenzMilkyWay.png");
-    // QImage livebild = convert::cvMatToQImage(livebildimg);
-    // ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildimg = isp.getImage();
+    QImage livebild = convert::cvMatToQImage(livebildimg);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
     b.sprintf("Nun erscheint das livebildbild der Szene im livebildlabel\n");
     ui->NachrichtentextBrowser->setText(a+b);
 
