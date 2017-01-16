@@ -10,12 +10,12 @@ def on_connect(client, userdata, rc):
 	print("Connected with result code "+str(rc))
 # Subscribing in on_connect() means that if we lose the connection and
 # reconnect then subscriptions will be renewed.
-	client.subscribe("hello/world")
+	client.subscribe("THGA/SWT/SweetPicker/Roboteraktionen/Georg")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	try:
-		tts = ALProxy("ALTextToSpeech", "192.168.0.21", 9559)
+		tts = ALProxy("ALTextToSpeech", "192.168.0.79", 9559)
 	except Exception,e:
 		print "Could not create proxy to ALTextToSpeech"
 		print "Error was: ",e
@@ -26,7 +26,7 @@ def on_message(client, userdata, msg):
 	#Deactivates double voice
 	tts.setParameter("doubleVoice", 0.0)
 
-	tts.say("Bitte toete mich schnell, ich moechte nicht Franzman sein"+str(msg.payload))
+	tts.say("\\rspd=80\\\\vct=75\\Steck dir deinen Schockoriegel sonst wohin"+str(msg.payload))
 	#print'Topic: ', msg.topic+'\nMessage: '+str(msg.payload)
 
 client = mqtt.Client()

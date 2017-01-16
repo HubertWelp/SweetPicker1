@@ -10,7 +10,7 @@ from naoqi import ALProxy
 #if (len(sys.argv) > 2):
 #   PORT = sys.argv[2]
 try:
-    tts = ALProxy("ALTextToSpeech", "192.168.0.21", 9559)
+    tts = ALProxy("ALTextToSpeech", "192.168.0.79", 9559)
 except Exception,e:
     print "Could not create proxy to ALTextToSpeech"
     print "Error was: ",e

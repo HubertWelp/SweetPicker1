@@ -37,6 +37,10 @@ HEADERS  += olmainwindow.h \
 LIBS += -LC:\\opencv2.4.8\\mybuild\\lib \
         libopencv_core248d \
         libopencv_highgui248d \
+        libopencv_features2d248d \
+        libopencv_nonfree248d \
+        libopencv_flann248d\
+        libopencv_calib3d248d\
         -LC:\\MQTT\\lib \
         libpaho-mqtt3c.dll \
 

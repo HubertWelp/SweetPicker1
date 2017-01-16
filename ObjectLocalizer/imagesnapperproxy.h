@@ -2,6 +2,7 @@
 #define IMAGESNAPPERPROXY_H
 #include <string>
 #include <opencv/cv.h>
+#include <opencv/highgui.h>
 using namespace std;
 
 /**
@@ -23,16 +24,16 @@ public:
     *
     * @param [in] path = Dateipfad der Szene; C:/SP1/scene.jpg
     */
-    void setImagePath(string path){this->scenePath = path;}
-
+    void setImagePath(string path);
     /**
     * @brief Funktion liefert Dateipfad für die Szene
     *
     * @retval string, char* = Dateipfad
     */
-    string getImagePath(){return this->scenePath;}
+    string getImagePath();
+
     /**
-    * @brief Liefert ein Bild aus dem aktuellen Dateipfad
+    @brief Liefert ein Bild aus dem aktuellen Dateipfad
     *
     * @retval Bilddatei (Inhalt)
     */

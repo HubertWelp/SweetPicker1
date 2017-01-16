@@ -18,9 +18,9 @@ public:
     /**
     * @brief Funktion setzt ein Bild fuer das Objekt fest
     *
-    * @param [in] path = Dateipfad des Objektes; C:/SweetPicker1/ObjectLocalizer/GUIBounty.png
+    * @param [in] Object-Referenz Bild
     */
-    void setImage(string path);
+    void setImage(cv::Mat img);
 
     /**
     * @brief Funktion liefert das Bild des Referenzobjektes
@@ -44,9 +44,24 @@ public:
     */
     vector<cv::KeyPoint> getKeypoints();
 
+    /**
+    * @brief Funktion setzt die Descriptors fuer das Referenzbild
+    *
+    * @param [in] descriptors = zu setzender Descriptor
+    */
+    void setDescriptor(cv::Mat descriptor);
+
+    /**
+    * @brief Funktion liefert den Descriptor des Referenzbildes
+    *
+    * @retval Descriptor des Referenzbildes
+    */
+    cv::Mat getDescriptor();
+
 private:
-    cv::Mat image;
+    cv::Mat image = cv::imread("C:\\opencv2.4.8\\kitkats.jpg");
     vector<cv::KeyPoint> keypoints_object;
+    cv::Mat descriptors_obj;
 };
 
 #endif // FEATUREIMAGE_H

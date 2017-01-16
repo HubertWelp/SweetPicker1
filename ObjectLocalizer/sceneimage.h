@@ -4,6 +4,7 @@
 #include <vector>
 #include <opencv/cv.h>
 #include "positiont.h"
+#include<opencv2/highgui/highgui.hpp>
 using namespace std;
 /**
 * @brief Klasse zum Speichern von Szenenobjekten
@@ -20,14 +21,14 @@ public:
     *
     * @param [in] path = Dateipfad der Szene; C:/SP1/scene.jpg
     */
-    void setImage(string path){this->scenePath = path;}
+    void setImage(cv::Mat img);
 
     /**
-    * @brief Funktion liefert Dateipfad für die Szene
+    * @brief Funktion liefert das Bild der Szene
     *
-    * @retval Dateipfad
+    * @retval Szenenbild
     */
-    string getImage(){return this->scenePath;}
+    cv::Mat getImage();
 
 
     /**
@@ -58,10 +59,26 @@ public:
     * @retval Dateipfad
     */
     PositionT getPosition();
+
+    /**
+    * @brief Funktion setzt den Descriptor fuer die Szene
+    *
+    * @param [in] descriptors = zu setzender Descriptor
+    */
+    void setDescriptor(cv::Mat descriptor);
+
+    /**
+    * @brief Funktion liefert den Descriptor der Szene
+    *
+    * @retval Descriptor der Szene
+    */
+    cv::Mat getDescriptor();
+
 private:
-    string scenePath;
+    cv::Mat image = cv::imread("C:\\opencv2.4.8\\scene2s.jpg");
     vector<cv::KeyPoint> keypoints_scene;
     PositionT position;
+    cv::Mat descriptors_scene;
 };
 
 #endif // SCENEIMAGE_H
