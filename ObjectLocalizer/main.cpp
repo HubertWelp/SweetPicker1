@@ -16,14 +16,13 @@ int main(int argc, char *argv[])
 
 
 /*** Zum Testen der MQTTNode-Klasse ************************/
-//    const char* thema = "SP1";
 //    char* nachricht;
 //    std::string received;
 //    nachricht = "Das soll veroeffentlich werden";
 //
-//    MQTTNode::publish(thema, nachricht);
+//    MQTTNode::sendMsg(nachricht);
 //
-//    received = MQTTNode::receive(10);
+//    received = MQTTNode::receiveMsg(10);
 //    std::cout << "empfangene Nachricht: " + received << std::endl;
 /***********************************************************/
 
