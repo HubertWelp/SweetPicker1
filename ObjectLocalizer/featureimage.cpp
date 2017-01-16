@@ -6,7 +6,9 @@ FeatureImage::FeatureImage()
 
 void FeatureImage::setImage(cv::Mat img)
 {
-    this->image = img;
+    if(!img.data)
+      { cout << "Error reading images " << endl;}
+    else this->image = img;
 }
 
 cv::Mat FeatureImage::getImage()

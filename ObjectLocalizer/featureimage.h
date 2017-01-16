@@ -59,7 +59,7 @@ public:
     cv::Mat getDescriptor();
 
 private:
-    cv::Mat image;
+    cv::Mat image = cv::imread("C:\\opencv2.4.8\\kitkats.jpg");
     vector<cv::KeyPoint> keypoints_object;
     cv::Mat descriptors_obj;
 };

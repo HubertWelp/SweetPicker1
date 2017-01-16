@@ -46,8 +46,14 @@ vector<cv::Point2f> PositionT::getBR()
     return this->BR;
 }
 
-float* PositionT::getCenter()
+cv::Point2f PositionT::getCenter()
 {
+    /*
+    cv::Point2f center;
+    center.x = this->TL. + 0.5*(this->TR.front() - this->TL.front());
+    center.y = this->BL.back() + 0.5*(this->BR.back() - this->BL.back());
+    cout << center.x << " " << center.y << endl;
+    */
 
 }
 

@@ -1,6 +1,7 @@
 #ifndef OBJECTPICKERPROXY_H
 #define OBJECTPICKERPROXY_H
 #include <string>
+#include "positiont.h"
 using namespace std;
 /**
 * @brief Platzhalter für die Robotik Anwendung
@@ -17,11 +18,11 @@ public:
     /**
     * @brief Funktion uebergibt die Koordinaten für ein gefundenes Objekt
     *
-    * @param [in] center = Mittelpunkt Koordinaten des gefundenen Objektes : formatierte Ausgabe XX.X-YY.Y
+    * @param [in] center = Mittelpunkt Koordinaten des gefundenen Objektes : formatierte Ausgabe JSON
     *
     * @retval Dateipfad
     */
-    void pick(){};
+    void pick(PositionT pos);
 };
 
 #endif // OBJECTPICKERPROXY_H

@@ -4,7 +4,6 @@
 * @brief Klasse zum Speichern von Positionen eines gefundenen Objektes
 * @author Kai Kulik
 */
-#include <vector>
 #include <opencv/cv.h>
 
 using namespace std;
@@ -18,8 +17,15 @@ private:
     vector<cv::Point2f> TR;
     vector<cv::Point2f> BL;
     vector<cv::Point2f> BR;
+    vector<cv::Point2f> Corners;
+
 
 public:
+
+    void setCorners(vector<cv::Point2f> temp)
+    {
+        this->Corners = temp;
+    }
 
     /**
     * @brief Funktion setzt den oberen linken Punkt des gefundenen Objektes
@@ -85,7 +91,7 @@ public:
     *
     * @retval pos = Koordinaten des Punktes
     */
-    float* getCenter();
+    cv::Point2f getCenter();
 
     /**
     * @brief Funktion gibt die Orientierung des gefundenen Objektes wieder

@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 //    cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
 
-/*** Test des Detectors*************************************/
+/*** Test des Detectors*************************************
     FeatureImage objTest;
     SceneImage scnTest;
     Detector detect;
@@ -44,19 +44,22 @@ int main(int argc, char *argv[])
     ObjectPickerProxy picker;
 
     //Referenz laden
-    objTest.setImage(cv::imread("referenzTwix.png"));
+    cv::imshow("TEST",objTest.getImage());
+    //objTest.setImage(cv::imread("referenzTwix.png"));
+    //objTest.setImage(cv::imread("C:\\opencv2.4.8\\kinders.jpg"));
     detect.findKeypoints(objTest);
+
     //Scene laden
     //scnTest.setImage(snapper.getImage());
-    scnTest.setImage(cv::imread("C:\\Benutzer\\Kai\\Bilder\\minaundkai.png)"));
+    //scnTest.setImage(cv::imread("C:\\opencv2.4.8\\scene2s.jpg)"));
 
     detect.findKeypoints(scnTest);
 
     //Vergleich
     detect.compare(objTest, scnTest);
 
-    cv::imshow("TEST",scnTest.getImage());
-    picker.pick();
+    cv::imshow("TEST2",scnTest.getImage());
+    picker.pick(scnTest.getPosition());
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;

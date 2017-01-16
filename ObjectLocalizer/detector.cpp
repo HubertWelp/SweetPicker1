@@ -61,6 +61,18 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
             if( dist > maxDist ) maxDist = dist;
     }
 
+
+      for( i = 0; i < object.getDescriptor().rows; i++ )
+      { if( matches[i].distance < 3*minDist )
+         { goodMatches.push_back( matches[i]); }
+      }
+/* TEST *
+      cv::Mat img_matches;
+      cv::drawMatches( object.getImage(), object.getKeypoints(), scene.getImage(), scene.getKeypoints(),
+                   goodMatches, img_matches, cv::Scalar::all(-1), cv::Scalar::all(-1),
+                   vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+      cv::imshow("GOOD MATCHES", img_matches);
+*/
     for(i=0;i<object.getDescriptor().rows; i++)
     {
         if( matches[i].distance < 3*minDist)
@@ -82,12 +94,20 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
     objCorners[2] = cvPoint(object.getImage().cols, object.getImage().rows);
     objCorners[3] = cvPoint(0, object.getImage().rows);
 
-    cv::perspectiveTransform(objectG, sceneG, H);
+    cv::perspectiveTransform(objCorners, sceneCorners, H);
 
-    cv::line( copyScene, sceneCorners[0] + cv::Point2f( object.getImage().cols, 0), sceneCorners[1] + cv::Point2f( object.getImage().cols, 0), cv::Scalar(0, 255, 0), 4 );
-    cv::line( copyScene, sceneCorners[1] + cv::Point2f( object.getImage().cols, 0), sceneCorners[2] + cv::Point2f( object.getImage().cols, 0), cv::Scalar( 0, 255, 0), 4 );
-    cv::line( copyScene, sceneCorners[2] + cv::Point2f( object.getImage().cols, 0), sceneCorners[3] + cv::Point2f( object.getImage().cols, 0), cv::Scalar( 0, 255, 0), 4 );
-    cv::line( copyScene, sceneCorners[3] + cv::Point2f( object.getImage().cols, 0), sceneCorners[0] + cv::Point2f( object.getImage().cols, 0), cv::Scalar( 0, 255, 0), 4 );
+    cv::line( copyScene, sceneCorners[0], sceneCorners[1], cv::Scalar(0, 255, 0), 4 );
+    cv::line( copyScene, sceneCorners[1], sceneCorners[2], cv::Scalar( 0, 255, 0), 4 );
+    cv::line( copyScene, sceneCorners[2], sceneCorners[3], cv::Scalar( 0, 255, 0), 4 );
+    cv::line( copyScene, sceneCorners[3], sceneCorners[0], cv::Scalar( 0, 255, 0), 4 );
 
     scene.setImage(copyScene);
+    /*
+    temp.setTL(sceneCorners[0]);
+    temp.setTR(sceneCorners[1]);
+    temp.setBR(sceneCorners[2]);
+    temp.setBL(sceneCorners[3]);
+    */
+    temp.setCorners(sceneCorners);
+    scene.setPosition(temp);
 }

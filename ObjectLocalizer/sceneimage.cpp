@@ -5,7 +5,9 @@ SceneImage::SceneImage()
 }
 void SceneImage::setImage(cv::Mat img)
 {
-    this->image = img;
+    if(!img.data)
+      { cout << "Error reading images " << endl;}
+    else this->image = img;
 }
 
 cv::Mat SceneImage::getImage()
