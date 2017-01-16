@@ -13,33 +13,30 @@ public:
     PositionT();
 private:
 
-    vector<cv::Point2f> TL;
-    vector<cv::Point2f> TR;
-    vector<cv::Point2f> BL;
-    vector<cv::Point2f> BR;
+    float TL[2];
+    float TR[2];
+    float BL[2];
+    float BR[2];
     vector<cv::Point2f> Corners;
 
 
 public:
 
-    void setCorners(vector<cv::Point2f> temp)
-    {
-        this->Corners = temp;
-    }
+    void setCorners(vector<cv::Point2f> temp);
 
     /**
     * @brief Funktion setzt den oberen linken Punkt des gefundenen Objektes
     *
     * @param [in] pos = Koordinaten des Punktes
     */
-    void setTL(vector<cv::Point2f> pos);
+    void setTL(float* pos);
 
     /**
     * @brief Funktion liefert den oberen linken Punkt des gefundenen Objektes
     *
     * @retval Koordinaten des Punktes
     */
-    vector<cv::Point2f> getTL();
+    float* getTL();
 
 
     /**
@@ -91,7 +88,7 @@ public:
     *
     * @retval pos = Koordinaten des Punktes
     */
-    cv::Point2f getCenter();
+    float* getCenter();
 
     /**
     * @brief Funktion gibt die Orientierung des gefundenen Objektes wieder

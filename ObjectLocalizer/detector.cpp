@@ -102,12 +102,6 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
     cv::line( copyScene, sceneCorners[3], sceneCorners[0], cv::Scalar( 0, 255, 0), 4 );
 
     scene.setImage(copyScene);
-    /*
-    temp.setTL(sceneCorners[0]);
-    temp.setTR(sceneCorners[1]);
-    temp.setBR(sceneCorners[2]);
-    temp.setBL(sceneCorners[3]);
-    */
     temp.setCorners(sceneCorners);
     scene.setPosition(temp);
 }

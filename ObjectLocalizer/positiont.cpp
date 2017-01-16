@@ -3,13 +3,28 @@
 PositionT::PositionT()
 {
 }
-void PositionT::setTL(vector<cv::Point2f> pos)
+
+void PositionT::setCorners(vector<cv::Point2f> temp)
+{
+    this->Corners = temp;
+    temp[0].x = TL[0];
+    temp[0].y = TL[1];
+    temp[1].x = TR[0];
+    temp[1].y = TR[1];
+    temp[2].x = BL[0];
+    temp[2].y = BL[1];
+    temp[3].x = BR[0];
+    temp[3].y = BR[1];
+
+}
+/*
+void PositionT::setTL(float* pos)
 {
     this->TL = pos;
 }
 
 
-vector<cv::Point2f> PositionT::getTL()
+float* PositionT::getTL()
 {
     return this->TL;
 }
@@ -45,15 +60,18 @@ vector<cv::Point2f> PositionT::getBR()
 {
     return this->BR;
 }
-
-cv::Point2f PositionT::getCenter()
+*/
+float* PositionT::getCenter()
 {
-    /*
-    cv::Point2f center;
-    center.x = this->TL. + 0.5*(this->TR.front() - this->TL.front());
-    center.y = this->BL.back() + 0.5*(this->BR.back() - this->BL.back());
-    cout << center.x << " " << center.y << endl;
-    */
+    float cent[2];
+
+    cent[0] = this->TL[0] + 0.5*(this->TR[0] - this->TL[0]);
+    cent[1] = this->TL[1] + 0.5*(this->TR[1] - this->TL[1]);
+
+    cout << "x = " << cent[0] << "y = " << cent[1] << endl;
+
+
+
 
 }
 

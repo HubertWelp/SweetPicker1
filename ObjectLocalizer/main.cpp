@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     ObjectPickerProxy picker;
 
     //Referenz laden
-    cv::imshow("TEST",objTest.getImage());
+    //cv::imshow("TEST",objTest.getImage());
     //objTest.setImage(cv::imread("referenzTwix.png"));
     //objTest.setImage(cv::imread("C:\\opencv2.4.8\\kinders.jpg"));
     detect.findKeypoints(objTest);
@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
     detect.compare(objTest, scnTest);
 
     cv::imshow("TEST2",scnTest.getImage());
+    scnTest.getPosition().getCenter();
     picker.pick(scnTest.getPosition());
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
