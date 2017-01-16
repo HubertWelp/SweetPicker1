@@ -2,62 +2,57 @@
 #include <opencv/cv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-
-#ifdef WIN32
-#include <windows.h>
-#elif _POSIX_C_SOURCE >= 199309L
-#include <time.h>   // for nanosleep
-#else
-#include <unistd.h> // for usleep
-#endif
+#include <unistd.h>
 
 using namespace std;
 using namespace cv;
 
-void sleep_ms(int milliseconds) // cross-platform sleep function
-{
-#ifdef WIN32
-    Sleep(milliseconds);
-#elif _POSIX_C_SOURCE >= 199309L
-    struct timespec ts;
-    ts.tv_sec = milliseconds / 1000;
-    ts.tv_nsec = (milliseconds % 1000) * 1000000;
-    nanosleep(&ts, NULL);
-#else
-    usleep(milliseconds * 1000);
-#endif
-}
+/**
+* @brief Funktion main.
+*
+* Die Funktion nimmt im Sekundentakt Bilder auf und speichert diese in einem Lokalen Ordner sp1.
+* Im Ordner sp1 befindet sich genau ein Bild, das jede Sekunde überschrieben wird\n
+* und durch das aktuellste ersetzt wird.
+*
+*/
 
 
 int main()
 {
 
-
     cout << "IMAGESNAPPER" << endl;
 
     int i = 0;
-    VideoCapture capture (1);
-    while(i!=5){
+    VideoCapture capture (1);   // 1 ist die id der Kamera.
 
-     if(!capture.isOpened())
-         return -1;
-     Mat frame;
-     namedWindow("Camera Stream",1);
-     for(;;)
-     {
-         capture>>frame;
-         capture.read(frame);
+    while(i!=5)
+    {
 
-         imshow("Camera Stream",frame);
-         imwrite("C://sp1//scene.jpeg",frame);
-         if(waitKey(30)>=0)
-             break;
+        if(!capture.isOpened())    // ueberprüft ob Kamera initialisiert ist.
+        {
+            return -1;
+        }
 
-     }
+        Mat frame;
+        namedWindow("Camera Stream",1);
+
+        for(;;)
+        {
+            capture>>frame;
+            capture.read(frame);
+
+            imshow("Camera Stream",frame);
+            imwrite("C://sp1//scene.jpeg",frame);  // Hier werden Bilder im genannten Ordner gespeichert.
+            sleep(3);
+
+            if(waitKey(1000)>=0)
+            {
+                break;
+            }
+
+        }
 
     }
-
-    waitKey(0);
 
     return 0;
 }
