@@ -75,7 +75,7 @@ public:
     cv::Mat getDescriptor();
 
 private:
-    cv::Mat image = cv::imread("C:\\opencv2.4.8\\scene2s.jpg");
+    cv::Mat image;
     vector<cv::KeyPoint> keypoints_scene;
     PositionT position;
     cv::Mat descriptors_scene;

@@ -13,10 +13,10 @@ public:
     PositionT();
 private:
 
-    float TL[2];
-    float TR[2];
-    float BL[2];
-    float BR[2];
+    int TL[2];
+    int TR[2];
+    int BL[2];
+    int BR[2];
     vector<cv::Point2f> Corners;
 
 
@@ -88,7 +88,7 @@ public:
     *
     * @retval pos = Koordinaten des Punktes
     */
-    float* getCenter();
+    int* getCenter();
 
     /**
     * @brief Funktion gibt die Orientierung des gefundenen Objektes wieder

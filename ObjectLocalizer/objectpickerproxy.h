@@ -1,6 +1,7 @@
 #ifndef OBJECTPICKERPROXY_H
 #define OBJECTPICKERPROXY_H
 #include <string>
+#include<iostream>
 #include "positiont.h"
 using namespace std;
 /**
