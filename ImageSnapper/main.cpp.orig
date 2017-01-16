@@ -2,12 +2,15 @@
 #include <opencv/cv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+<<<<<<< HEAD
 #include <unistd.h>
+=======
+>>>>>>> e46db0e4a8cf0f6ea342d6058f7c8a16d631eb99
 
 using namespace std;
 using namespace cv;
 
-
+<<<<<<< HEAD
 /**
 * @brief Funktion main.
 *
@@ -18,6 +21,8 @@ using namespace cv;
 */
 
 
+=======
+>>>>>>> e46db0e4a8cf0f6ea342d6058f7c8a16d631eb99
 int main()
 {
 
