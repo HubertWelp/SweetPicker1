@@ -66,13 +66,13 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
       { if( matches[i].distance < 3*minDist )
          { goodMatches.push_back( matches[i]); }
       }
-/* TEST *
+/* TEST */
       cv::Mat img_matches;
       cv::drawMatches( object.getImage(), object.getKeypoints(), scene.getImage(), scene.getKeypoints(),
                    goodMatches, img_matches, cv::Scalar::all(-1), cv::Scalar::all(-1),
                    vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
       cv::imshow("GOOD MATCHES", img_matches);
-*/
+/**/
     for(i=0;i<object.getDescriptor().rows; i++)
     {
         if( matches[i].distance < 3*minDist)
@@ -102,6 +102,7 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
     cv::line( copyScene, sceneCorners[3], sceneCorners[0], cv::Scalar( 0, 255, 0), 4 );
 
     scene.setImage(copyScene);
+    cv::imshow("Copyscene",copyScene);
     temp.setCorners(sceneCorners);
     scene.setPosition(temp);
 }
