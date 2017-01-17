@@ -39,20 +39,20 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
     // Set QWidget as the central layout of the main window
     setCentralWidget(window);
 
-    cv::Mat scene;
-    cv::Mat livebildMat;
+    cv::Mat livebildMatvorResize;
+    cv::Mat livebildMatnachResize;
     ImageSnapperProxy isp;
 
 
-    for(int i=0;i<5;i++)
-    {
-        scene = cv::imread("D:\\scene1.png");// isp.getImage();
-        cv::resize(scene,livebildMat,cv::Size(500,300),0,0,cv::INTER_LINEAR);
-        QImage livebildQImage = convert::cvMatToQImage(livebildMat);
-        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));//display the image in livebildlabel
+   // for(int i=0;i<5;i++)
+   // {
+        livebildMatvorResize = cv::imread("D:\\scene1.png");// isp.getImage();
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(500,300),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
 
-        delay(1);
-    }
+     //   delay(1);
+    //}
 
 
 }
@@ -104,17 +104,20 @@ void OLMainWindow::on_teasersButton_clicked()
 {
     QString s;
 
-    QImage  refer, rotesKreuzQImage;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI;
     OLMainWindow ol;
-    cv::Mat referenz, livebildMat;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
-    //refer.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
-    cv::Mat referMat = cv::imread("D:\\referenzTeasers2.png");
-    cv::resize(referMat,referenz,cv::Size(219,154),0,0,cv::INTER_LINEAR);
-    refer = convert::cvMatToQImage(referenz);
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(refer));//display the image in referenzbildlabel
+    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
-    livebildMat = cv::imread("D:\\scene1.png");// isp.getImage();
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
 
 
@@ -125,7 +128,7 @@ void OLMainWindow::on_teasersButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-    ol.start(referenz,livebildMat);
+    ol.start(referenzbildMatvorResize,livebildMatDetector);
 
     /*if(ol.start(referenzQImage,livebildMat) == false)
     //{
@@ -151,23 +154,23 @@ void OLMainWindow::on_teasersButton_clicked()
 
 void OLMainWindow::on_snickersButton_clicked()
 {
+
     QString s;
 
-
-    cv::Mat livebildMat;
-    QImage referenzQImage;
-    ImageSnapperProxy isp;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI;
     OLMainWindow ol;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
+    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
-    referenzQImage.load(":/Referenzbilder/referenzSnickers.png");	// load and draw image
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzQImage));//display the image in referenzbildlabel
-
-
-    livebildMat = cv::imread("D:\\celebrations.jpg");
-    QImage livebild = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
-
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
 
     ui->bountyButton->setEnabled(false);
@@ -177,9 +180,9 @@ void OLMainWindow::on_snickersButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-   // ol.start(referenzQImage,livebildMat);
+   ol.start(referenzbildMatvorResize,livebildMatDetector);
 
-    //if(ol.start(referenzQImage,livebildMat) == false)
+    /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
         ui->NachrichtentextBrowser->setText(s);
@@ -197,24 +200,27 @@ void OLMainWindow::on_snickersButton_clicked()
         ui->twixButton->setEnabled(true);
         ui->milkyWayButton->setEnabled(true);
         ui->teasersButton->setEnabled(true);
+      }*/
 }
 
 void OLMainWindow::on_twixButton_clicked()
 {
     QString s;
 
-
-    cv::Mat livebildMat;
-    QImage referenzQImage;
-    ImageSnapperProxy isp;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI;
     OLMainWindow ol;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
-    referenzQImage.load(":/Referenzbilder/referenzTwix.png");	// load and draw image
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzQImage));//display the image in referenzbildlabel
+    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
-    livebildMat = cv::imread("D:\\celebrations.jpg");
-    QImage livebild = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
 
 
@@ -225,9 +231,9 @@ void OLMainWindow::on_twixButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-   // ol.start(referenzQImage,livebildMat);
+   ol.start(referenzbildMatvorResize,livebildMatDetector);
 
-    //if(ol.start(referenzQImage,livebildMat) == false)
+    /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
         ui->NachrichtentextBrowser->setText(s);
@@ -246,27 +252,27 @@ void OLMainWindow::on_twixButton_clicked()
         ui->twixButton->setEnabled(true);
         ui->milkyWayButton->setEnabled(true);
         ui->teasersButton->setEnabled(true);
+      }*/
 }
 
 void OLMainWindow::on_doveButton_clicked()
 {
     QString s;
 
-
-
-    cv::Mat livebildMat;
-    QImage referenzQImage;
-    ImageSnapperProxy isp;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI;
     OLMainWindow ol;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
-    referenzQImage.load(":/Referenzbilder/referenzDove.png");	// load and draw image
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzQImage));//display the image in referenzbildlabel
+    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
-
-    livebildMat = cv::imread("D:\\celebrations.jpg");
-    QImage livebild = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
-
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
 
     ui->bountyButton->setEnabled(false);
@@ -276,9 +282,9 @@ void OLMainWindow::on_doveButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-  //  ol.start(referenzQImage,livebildMat);
+  ol.start(referenzbildMatvorResize,livebildMatDetector);
 
-    //if(ol.start(referenzQImage,livebildMat) == false)
+    /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
         ui->NachrichtentextBrowser->setText(s);
@@ -296,25 +302,27 @@ void OLMainWindow::on_doveButton_clicked()
         ui->twixButton->setEnabled(true);
         ui->milkyWayButton->setEnabled(true);
         ui->teasersButton->setEnabled(true);
+     }*/
 }
 
 void OLMainWindow::on_bountyButton_clicked()
 {
     QString s;
 
-    cv::Mat livebildMat;
-    QImage referenzQImage;
-    ImageSnapperProxy isp;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI;
     OLMainWindow ol;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
-    referenzQImage.load(":/Referenzbilder/referenzBounty.png");	// load and draw image
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzQImage));//display the image in referenzbildlabel
+    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
-
-    livebildMat = cv::imread("D:\\celebrations.jpg");
-    QImage livebild = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
-
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
 
     ui->bountyButton->setEnabled(false);
@@ -324,9 +332,9 @@ void OLMainWindow::on_bountyButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-  //  ol.start(referenzQImage,livebildMat);
+  ol.start(referenzbildMatvorResize,livebildMatDetector);
 
-    //if(ol.start(referenzQImage,livebildMat) == false)
+    /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
         ui->NachrichtentextBrowser->setText(s);
@@ -344,27 +352,29 @@ void OLMainWindow::on_bountyButton_clicked()
         ui->twixButton->setEnabled(true);
         ui->milkyWayButton->setEnabled(true);
         ui->teasersButton->setEnabled(true);
+      }*/
 }
 
 void OLMainWindow::on_milkyWayButton_clicked()
 {
     QString s;
 
-
-
-    cv::Mat livebildMat;
-    QImage referenzQImage;
-    ImageSnapperProxy isp;
+    QImage rotesKreuzQImage;
+    QImage referenzbildQImageGUI1;
+    QImage referenzbildQImageGUI2;
     OLMainWindow ol;
+    cv::Mat livebildMatDetector;
+    cv::Mat referenzbildMatnachResize;
+    cv::Mat referenzbildMatvorResize;
 
-    referenzQImage.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzQImage));//display the image in referenzbildlabel
+    referenzbildQImageGUI1.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
+    //referenzbildMatvorResize = cv::imread("D:\\referenzTeasers2.png");
+    referenzbildMatvorResize = convert::QImageToCvMat(referenzbildQImageGUI1);
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    referenzbildQImageGUI2 = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI2));//display the image in referenzbildlabel
 
-
-    livebildMat = cv::imread("D:\\celebrations.jpg");
-    QImage livebild = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebild));//display the image in livebildlabel
-
+    livebildMatDetector = cv::imread("D:\\scene1.png");// isp.getImage();
 
     ui->bountyButton->setEnabled(false);
     ui->snickersButton->setEnabled(false);
@@ -373,9 +383,9 @@ void OLMainWindow::on_milkyWayButton_clicked()
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
 
-   // ol.start(referenzQImage,livebildMat);
+   ol.start(referenzbildMatvorResize,livebildMatDetector);
 
-    //if(ol.start(referenzQImage,livebildMat) == false)
+    /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
         ui->NachrichtentextBrowser->setText(s);
@@ -393,5 +403,6 @@ void OLMainWindow::on_milkyWayButton_clicked()
         ui->twixButton->setEnabled(true);
         ui->milkyWayButton->setEnabled(true);
         ui->teasersButton->setEnabled(true);
+     }*/
 }
 
