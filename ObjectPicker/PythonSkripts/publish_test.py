@@ -4,7 +4,7 @@ import random
 import json
 
 X = str(random.randint(0, 100))
-Y = str(random.randint(0, 90))
+Y = str(random.randint(0, 75))
 Z = str(random.randint(0, 90))
 
 jtext={'Distanz': X,'PolarWinkel': Y, 'RotWinkel': Z}

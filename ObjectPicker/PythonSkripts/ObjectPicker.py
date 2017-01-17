@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import os
 import sys
 import json
+import time
 from naoqi import ALProxy
 
 
@@ -15,26 +16,24 @@ def on_connect(client, userdata, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-        parsed_msg = json.loads(msg)
-
-#if Aktion == 'Sprechen'
-#try except ALtts	
-#if Aktionen == 'Zeigen'
-        print(msg)
-        Distanz = parsed_msg['Distanz']
-        PolarWinkel = parsed_msg['PolarWinkel']
-        RotWinkel = parsed_msg['RotWinkel']
-        ObjectPicker_zeigen(Distanz, PolarWikel, RotWinkel)
-        print (Distanz)
-        print (PolarWinkel)
-        print (RotWinkel)
-        
-#else
-        #print "Aktion ist nicht definiert"
-        #sys.exit(1)
+        try:
+                parsed_msg = json.loads(msg.payload)
+                print(parsed_msg)
+                Distanz = parsed_msg['Distanz']
+                PolarWinkel = parsed_msg['PolarWinkel']
+                RotWinkel = parsed_msg['RotWinkel']
+                print (Distanz)
+                print (PolarWinkel)
+                print (RotWinkel)
+                ObjectPicker_zeigen(Distanz, PolarWinkel, RotWinkel)
+                
+        except Exception,e:
+		print "auf on_massage ist ein fehler aufgetreten"
+		print "Error war:  ",e
+		sys.exit(1)
 
 def ObjectPicker_publish(Topic,msg):
-
+        
         callstring = "mqttpublisher.py"+" "+brokerIp+" "+brokerPort+" "+Topic+" "+msg
         try:
 		os.system(callstring)
@@ -50,8 +49,11 @@ def ObjectPicker_reset():
 	except Exception,e:
 		print "Konnte das reset_Skript nicht starten"
 		print "Error war:  ",e
+		
 def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel):
         try:
+                time.sleep(3.0)
+                
                 callstring = "Zeiger.py"+" "+Distanz+" "+PolarWinkel
                 os.system(callstring)
         except Exception,e:
@@ -61,10 +63,10 @@ def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel):
 
 	
 
-	
+msg = "default"	
 Distanz = "Default"
-PolarWinkel = "PolarWinkel"
-RotWinkel = "RotWinkel"
+PolarWinkel = "Default"
+RotWinkel = "Default"
 brokerIp = "192.168.0.1"
 brokerPort = "8883"
 naoIp = "192.168.0.79"

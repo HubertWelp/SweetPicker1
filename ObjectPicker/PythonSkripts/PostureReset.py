@@ -85,7 +85,7 @@ if __name__ == "__main__":
     robotIp = "192.168.0.79"
 
     if len(sys.argv) <= 1:
-        print "Usage python almotion_controllingjoints.py robotIP (optional default: 127.0.0.1)"
+        print "Benutze PostureReset.py um NAO in Ausgangsposition zu bringen"
     else:
         robotIp = sys.argv[1]
 
