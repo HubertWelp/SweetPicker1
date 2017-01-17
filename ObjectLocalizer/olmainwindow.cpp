@@ -42,11 +42,17 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
     cv::Mat scene;
     cv::Mat livebildMat;
     ImageSnapperProxy isp;
-    scene = cv::imread("D:\\scene1.png");// isp.getImage();
-    cv::resize(scene,livebildMat,cv::Size(500,300),0,0,cv::INTER_LINEAR);
-    QImage livebildQImage = convert::cvMatToQImage(livebildMat);
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));//display the image in livebildlabel
 
+
+    for(int i=0;i<5;i++)
+    {
+        scene = cv::imread("D:\\scene1.png");// isp.getImage();
+        cv::resize(scene,livebildMat,cv::Size(500,300),0,0,cv::INTER_LINEAR);
+        QImage livebildQImage = convert::cvMatToQImage(livebildMat);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));//display the image in livebildlabel
+
+        delay(1);
+    }
 
 
 }
