@@ -2,6 +2,8 @@
 #define OLMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QImage>
+#include <opencv/cv.h>
 namespace Ui {
 class OLMainWindow;
 }
@@ -13,6 +15,8 @@ class OLMainWindow : public QMainWindow
 public:
     explicit OLMainWindow(QWidget *parent = 0);
     ~OLMainWindow();
+    void start(cv::Mat referenzbild, cv::Mat livebild);
+    void delay(int sec);
 
 private slots:
 

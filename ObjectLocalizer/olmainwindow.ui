@@ -32,7 +32,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUIMilkyWay.png</normaloff>:/Objects/GUIMilkyWay.png</iconset>
          </property>
          <property name="iconSize">
@@ -52,7 +52,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUISnickers.png</normaloff>:/Objects/GUISnickers.png</iconset>
          </property>
          <property name="iconSize">
@@ -69,7 +69,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUIBounty.png</normaloff>:/Objects/GUIBounty.png</iconset>
          </property>
          <property name="iconSize">
@@ -86,7 +86,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUITwix.png</normaloff>:/Objects/GUITwix.png</iconset>
          </property>
          <property name="iconSize">
@@ -103,7 +103,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUIDove.png</normaloff>:/Objects/GUIDove.png</iconset>
          </property>
          <property name="iconSize">
@@ -120,7 +120,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="OLMainWindow.qrc">
+          <iconset resource="olmainwindow.qrc">
            <normaloff>:/Objects/GUITeasers.png</normaloff>:/Objects/GUITeasers.png</iconset>
          </property>
          <property name="iconSize">
@@ -206,8 +206,16 @@
            <verstretch>75</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string/>
+          <string>Bitte Auswahl treffen!</string>
          </property>
         </widget>
        </item>
@@ -241,7 +249,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="OLMainWindow.qrc"/>
+  <include location="olmainwindow.qrc"/>
  </resources>
  <connections/>
 </ui>

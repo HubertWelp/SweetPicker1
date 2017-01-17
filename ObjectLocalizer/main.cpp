@@ -7,6 +7,7 @@
 #include <string>
 #include "detector.h"
 #include "imagesnapperproxy.h"
+#include "objectpickerproxy.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,14 +16,13 @@ int main(int argc, char *argv[])
 
 
 /*** Zum Testen der MQTTNode-Klasse ************************/
-//    const char* thema = "SP1";
 //    char* nachricht;
 //    std::string received;
 //    nachricht = "Das soll veroeffentlich werden";
 //
-//    MQTTNode::publish(thema, nachricht);
+//    MQTTNode::sendMsg(nachricht);
 //
-//    received = MQTTNode::receive(10);
+//    received = MQTTNode::receiveMsg(10);
 //    std::cout << "empfangene Nachricht: " + received << std::endl;
 /***********************************************************/
 
@@ -31,26 +31,58 @@ int main(int argc, char *argv[])
     cv::Mat mat;
     mat = cv::imread("D:\\Qt_logo.png");
 
-    //cvNamedWindow("hoffentlichKlapptEs");
-    //cv::imshow("hoffentlichKlapptEs",mat);
+//    cvNamedWindow("hoffentlichKlapptEs");
+//    cv::imshow("hoffentlichKlapptEs",mat);
 /***********************************************************/
 
-/*** Test des Detectors*************************************/
+/*** Test des Detectors*************************************
     FeatureImage objTest;
     SceneImage scnTest;
     Detector detect;
     ImageSnapperProxy snapper;
+    ObjectPickerProxy picker;
+    cv::Mat scene = cv::imread("C:\\opencv2.4.8\\scene2s.jpg");
+    cv::Mat obj = cv::imread("C:\\opencv2.4.8\\kitkats.jpg");
 
-    objTest.setImage(cv::imread("referenzTwix.png"));
+    //Referenz laden
+    //cv::imshow("TEST",objTest.getImage());
+    //objTest.setImage(cv::imread("referenzTwix.png"));
+    //objTest.setImage(cv::imread("C:\\opencv2.4.8\\kitkats.jpg"));
+    objTest.setImage(obj);
+    //detect.findKeypoints(objTest);
 
-    detect.findKeypoints(objTest);
-    scnTest.setImage(snapper.getImage());
-//
-//    detect.findKeypoints(scnTest);
-//
-//    detect.compare(objTest, scnTest);
-//
-//    cv::imshow("TEST",scnTest.getImage()); // <----
+    //Scene laden
+    //scnTest.setImage(snapper.getImage());
+    //scnTest.setImage(cv::imread("C:\\opencv2.4.8\\scene2s.jpg)"));
+    scnTest.setImage(scene);
+
+    detect.findKeypoints(scnTest);
+
+    //Vergleich
+    detect.compare(objTest, scnTest);
+
+    cv::imshow("TEST2",scnTest.getImage());
+    scnTest.getPosition().getCenter();
+    picker.pick(scnTest.getPosition());
+/***********************************************************/
+
+/*** Test der Koordinaten***********************************/
+    vector<cv::Point2f> test(4);
+    PositionT pos;
+    ObjectPickerProxy prox;
+
+    test[0] = cvPoint(0,0);
+    test[1] = cvPoint(640,0);
+    test[2] = cvPoint(640,480);
+    test[3] = cvPoint(0,480);
+
+    pos.setCorners(test);
+    pos.getCenter();
+
+    prox.pick(pos);
+
+
+
 /***********************************************************/
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;

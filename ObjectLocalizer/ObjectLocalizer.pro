@@ -41,6 +41,7 @@ LIBS += -LC:\\opencv2.4.8\\mybuild\\lib \
         libopencv_nonfree248d \
         libopencv_flann248d\
         libopencv_calib3d248d\
+        libopencv_imgproc248d\
         -LC:\\MQTT\\lib \
         libpaho-mqtt3c.dll \
 

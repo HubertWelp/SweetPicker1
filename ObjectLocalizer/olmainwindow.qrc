@@ -15,4 +15,7 @@
         <file>referenzTeasers.png</file>
         <file>referenzTwix.png</file>
     </qresource>
+    <qresource prefix="/rotesKreuz">
+        <file>rotes_kreuz.jpg</file>
+    </qresource>
 </RCC>
