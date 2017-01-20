@@ -23,11 +23,11 @@ public:
     *
     * Die Funktion veröffentlicht eine Nachricht (die übergeben werden muss) zu einem bestehenden Thema (topic) auf dem MQTT-Broker.
     * Das Thema, mit dem die Nachricht von einem anderen subscriber empfangen werden kann,
-    * kann nicht verändert werden und lautet "THGA/SWT/SweetPicker/Roboteraktion/Georg".
+    * kann nicht verändert werden und lautet "THGA/SWT/SweetPicker/Roboteraktionen/Georg".
     *
     * @param [in] message = Nachricht die veröffentlich werden soll
     */
-    static void sendMsg(const char* message);
+    static void sendMsg(std::string message);
 
     /**
     * @brief  Funktion empfängt eine Nachricht
@@ -35,7 +35,7 @@ public:
     * Die Funtkion wartet so lange bis eine Nachricht eingetroffen ist oder bis der timer abgelaufen ist.
     * Ist eine Nachricht, vor Ablaufen des timers, eingetroffen wird diese empfangen und als string zurück gegeben.
     * Das Thema, mit dem die Nachricht erhalten werden kann,
-    * kann nicht verändert werden und lautet "THGA/SWT/SweetPicker/Roboteraktion/Georg".
+    * kann nicht verändert werden und lautet "THGA/SWT/SweetPicker/Roboteraktionen/Georg".
     *
     * @param [in] timeout = nach Ablaufen des timers wird die Funktion beendet damit das Programm nicht dauerhaft blockiert wird,
     *                       falls keine Nachricht empfangen wurde (timeout in Sekunden)

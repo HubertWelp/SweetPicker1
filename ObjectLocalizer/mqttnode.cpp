@@ -4,10 +4,11 @@
 #include "string.h"
 #include "MQTTClient.h"
 #include <time.h>
+#include <string>
 
-#define ADDRESS     "tcp://localhost:1883"          //MQTT-Broker im IT-Labor "tcp://192.168.0.1:8883"
+#define ADDRESS     "tcp://192.168.0.1:8883"          //MQTT-Broker im IT-Labor "tcp://192.168.0.1:8883"
 #define CLIENTID    "ObjectLocalizer"
-#define TOPIC       "THGA/SWT/SweetPicker/Roboteraktion/Georg"
+#define TOPIC       "THGA/SWT/SweetPicker/Roboteraktionen/Georg"
 #define QOS         1
 #define TIMEOUT     10000L
 
@@ -20,7 +21,7 @@ MQTTNode::MQTTNode()
 }
 
 /*** MQTTNode-publisher ***************************************************************************************************/
-void MQTTNode::sendMsg(const char* message)
+void MQTTNode::sendMsg(std::string message)
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;      //verbindungsoptionen initialisieren
@@ -28,6 +29,7 @@ void MQTTNode::sendMsg(const char* message)
     MQTTClient_deliveryToken token;                                 //der token wird verwendet um zu überprüfen ob die Nachricht
                                                                     //erfolgreich an das Ziel gesendet wurde
     int rc;
+    char* msg;
 
     MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL); //MQTTClient erzeugen
     conn_opts.keepAliveInterval = 20;                               //regelmäßiges ping senden um zu merken falls der Broker nicht mehr läuft
@@ -38,9 +40,9 @@ void MQTTNode::sendMsg(const char* message)
         printf("Failed to connect, return code %d\n", rc);
         exit(EXIT_FAILURE);
     }
-
-    pubmsg.payload = (void*)message;                                //payload = Nutzlast
-    pubmsg.payloadlen = strlen(message);
+    msg = (char *) message.c_str();
+    pubmsg.payload = msg;                                //payload = Nutzlast
+    pubmsg.payloadlen = strlen(msg);
 
     pubmsg.qos = QOS;
     pubmsg.retained = 0;                                            //nicht zurückbehalten
@@ -96,7 +98,6 @@ void connlost(void *context, char *cause)
      MQTTClient client;
      MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;        //verbindungsoptionen initialisieren
      int rc;
-     int ch;
 
      MQTTClient_create(&client, ADDRESS, CLIENTID,          //MQTTClient erzeugen
          MQTTCLIENT_PERSISTENCE_NONE, NULL);

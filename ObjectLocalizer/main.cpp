@@ -4,7 +4,7 @@
 #include <opencv/highgui.h>
 #include "mqttnode.h"
 #include <iostream>
-#include <string>
+#include <string>                   //for MQTTNode-class
 #include "detector.h"
 #include "imagesnapperproxy.h"
 #include "objectpickerproxy.h"
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 
 /*** Zum Testen der MQTTNode-Klasse ************************/
-//    char* nachricht;
+//    string nachricht;
 //    std::string received;
 //    nachricht = "Das soll veroeffentlich werden";
 //
