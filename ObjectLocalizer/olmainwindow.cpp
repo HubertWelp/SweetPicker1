@@ -44,15 +44,16 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
     ImageSnapperProxy isp;
 
 
-   // for(int i=0;i<5;i++)
-   // {
+    int i = 0;
+    do
+    {
         livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");// isp.getImage();
         cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(500,300),0,0,cv::INTER_LINEAR);
         QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
         ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
 
-     //   delay(1);
-    //}
+        delay(1);
+    }while(i>5);
 
 
 }
@@ -111,9 +112,9 @@ void OLMainWindow::on_teasersButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
-    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
+    cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(300,184),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
@@ -127,6 +128,7 @@ void OLMainWindow::on_teasersButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
     ol.start(referenzbildMatvorResize,livebildMatDetector);
 
@@ -164,7 +166,7 @@ void OLMainWindow::on_snickersButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
@@ -179,6 +181,7 @@ void OLMainWindow::on_snickersButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
    ol.start(referenzbildMatvorResize,livebildMatDetector);
 
@@ -214,7 +217,7 @@ void OLMainWindow::on_twixButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzTwix.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
@@ -230,6 +233,7 @@ void OLMainWindow::on_twixButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
    ol.start(referenzbildMatvorResize,livebildMatDetector);
 
@@ -266,7 +270,7 @@ void OLMainWindow::on_doveButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
@@ -281,6 +285,7 @@ void OLMainWindow::on_doveButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
   ol.start(referenzbildMatvorResize,livebildMatDetector);
 
@@ -316,7 +321,7 @@ void OLMainWindow::on_bountyButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildMatvorResize.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
@@ -331,6 +336,7 @@ void OLMainWindow::on_bountyButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
   ol.start(referenzbildMatvorResize,livebildMatDetector);
 
@@ -367,8 +373,8 @@ void OLMainWindow::on_milkyWayButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    referenzbildQImageGUI1.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
-    //referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
+    //referenzbildQImageGUI1.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
+    referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
     referenzbildMatvorResize = convert::QImageToCvMat(referenzbildQImageGUI1);
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI2 = convert::cvMatToQImage(referenzbildMatnachResize);
@@ -382,6 +388,7 @@ void OLMainWindow::on_milkyWayButton_clicked()
     ui->twixButton->setEnabled(false);
     ui->milkyWayButton->setEnabled(false);
     ui->teasersButton->setEnabled(false);
+    delay(2);
 
    ol.start(referenzbildMatvorResize,livebildMatDetector);
 
