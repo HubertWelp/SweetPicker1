@@ -9,8 +9,8 @@ void ObjectPickerProxy::pick(PositionT pos)
     float center[2];
     //Transformation in cm
     //center = pos.getCenter();
-    center[0] = pos.getCenter()[0] * 0.028125; // 18cm/640px
-    center[1] = pos.getCenter()[1] * 0.028333; // 13,6cm/480px
+    center[0] = pos.getCenter()[0] * 0.00694; // 18cm/1333px = 0.0135
+    center[1] = pos.getCenter()[1] * 0.00699; // 13,6cm/1000px = 0.0136
 
     cout << "x = " << center[0] << "cm | y = " << center[1] << "cm" <<  endl;
     //Berechnung der Distanz

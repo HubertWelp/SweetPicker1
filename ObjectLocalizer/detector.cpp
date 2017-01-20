@@ -6,7 +6,7 @@ Detector::Detector()
 
 void Detector::findKeypoints(FeatureImage& image)
 {
-    int minHessian = 400;
+    int minHessian = 380;
     cv::SurfFeatureDetector detector(minHessian);
     vector<cv::KeyPoint> keypoints;
     cv::SurfDescriptorExtractor extractor;
@@ -22,7 +22,7 @@ void Detector::findKeypoints(FeatureImage& image)
 
 void Detector::findKeypoints(SceneImage& image)
 {
-    int minHessian = 400;
+    int minHessian = 380;
     cv::SurfFeatureDetector detector(minHessian);
     vector<cv::KeyPoint> keypoints;
     cv::SurfDescriptorExtractor extractor;
