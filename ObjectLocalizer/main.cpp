@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     picker.pick(scnTest.getPosition());
 /***********************************************************/
 
-/*** Test der Koordinaten***********************************/
+/*** Test der Koordinaten***********************************
     vector<cv::Point2f> test(4);
     PositionT pos;
     ObjectPickerProxy prox;
