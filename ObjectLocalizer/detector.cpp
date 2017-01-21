@@ -6,7 +6,7 @@ Detector::Detector()
 
 void Detector::findKeypoints(FeatureImage& image)
 {
-    int minHessian = 380;
+    int minHessian = 400;
     cv::SurfFeatureDetector detector(minHessian);
     vector<cv::KeyPoint> keypoints;
     cv::SurfDescriptorExtractor extractor;
@@ -22,7 +22,7 @@ void Detector::findKeypoints(FeatureImage& image)
 
 void Detector::findKeypoints(SceneImage& image)
 {
-    int minHessian = 380;
+    int minHessian = 400;
     cv::SurfFeatureDetector detector(minHessian);
     vector<cv::KeyPoint> keypoints;
     cv::SurfDescriptorExtractor extractor;
@@ -73,13 +73,6 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
                    vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
       cv::imshow("GOOD MATCHES", img_matches);
 /**/
-    for(i=0;i<object.getDescriptor().rows; i++)
-    {
-        if( matches[i].distance < 3*minDist)
-        {
-            goodMatches.push_back(matches[i]);
-        }
-    }
 
     for(i=0; i < goodMatches.size(); i++)
     {
