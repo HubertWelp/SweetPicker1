@@ -35,21 +35,14 @@ int main()
         }
 
         Mat frame;
-        namedWindow("Camera Stream",1);
 
         for(;;)
         {
             capture>>frame;
             capture.read(frame);
 
-            imshow("Camera Stream",frame);
-            imwrite("C://sp1//scene.jpeg",frame);  // Hier werden Bilder im genannten Ordner gespeichert.
-            sleep(3);
-
-            if(waitKey(1000)>=0)
-            {
-                break;
-            }
+            imwrite("C://SP1//scene.png",frame);   // Hier werden Bilder im genannten Ordner gespeichert.
+            sleep(1);                              // Die Funktion sleep sorgt dafür, dass das Speichern der Bilder im Sekundentakt erfolgt.
 
         }
 
