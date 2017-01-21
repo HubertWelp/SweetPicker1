@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QImage>
 #include <opencv/cv.h>
+#include <QObject>
 namespace Ui {
 class OLMainWindow;
 }
@@ -17,6 +18,8 @@ public:
     ~OLMainWindow();
     void start(cv::Mat referenzbild, cv::Mat livebild);
     void delay(int sec);
+    void loadScene();
+    int slotmitSignalverbinden(QObject *sender, const char *signal);
 
 private slots:
 

@@ -23,6 +23,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QTime>
+#include <QObject>
 
 
 
@@ -39,22 +40,6 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
     // Set QWidget as the central layout of the main window
     setCentralWidget(window);
 
-    cv::Mat livebildMatvorResize;
-    cv::Mat livebildMatnachResize;
-    ImageSnapperProxy isp;
-
-
-    int i = 0;
-    do
-    {
-        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");// isp.getImage();
-        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(500,300),0,0,cv::INTER_LINEAR);
-        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
-        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
-
-        delay(1);
-    }while(i>5);
-
 
 }
 
@@ -70,6 +55,35 @@ void OLMainWindow::delay(int sec)
     while (QTime::currentTime() < dieTime)
     QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
+int OLMainWindow::slotmitSignalverbinden(QObject *sender, const char *signal) {
+    QEventLoop loop;
+    QObject::connect(sender, signal, &loop, SLOT(quit()));
+    return loop.exec();
+}
+
+void OLMainWindow::loadScene()
+{
+    cv::Mat livebildMatvorResize;
+    cv::Mat livebildMatnachResize;
+    ImageSnapperProxy isp;
+
+    do
+    {
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");// isp.getImage();
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(500,300),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        delay(1);
+        slotmitSignalverbinden(ui->teasersButton,SIGNAL(OLMainWindow::on_teasersButton_clicked()));
+        slotmitSignalverbinden(ui->bountyButton,SIGNAL(OLMainWindow::on_bountyButton_clicked()));
+        slotmitSignalverbinden(ui->doveButton,SIGNAL(OLMainWindow::on_doveButton_clicked()));
+        slotmitSignalverbinden(ui->milkyWayButton,SIGNAL(OLMainWindow::on_milkyWayButton_clicked()));
+        slotmitSignalverbinden(ui->twixButton,SIGNAL(OLMainWindow::on_twixButton_clicked()));
+        slotmitSignalverbinden(ui->snickersButton,SIGNAL(OLMainWindow::on_snickersButton_clicked()));
+    }while(1);
+}
+
 
 void OLMainWindow::start(cv::Mat referenzbild, cv::Mat livebild)
 {
@@ -366,19 +380,19 @@ void OLMainWindow::on_milkyWayButton_clicked()
     QString s;
 
     QImage rotesKreuzQImage;
-    QImage referenzbildQImageGUI1;
-    QImage referenzbildQImageGUI2;
+    QImage referenzbildQImageGUI;
+
     OLMainWindow ol;
     cv::Mat livebildMatDetector;
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    //referenzbildQImageGUI1.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzMilkyWay.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzMilkyWay.png");
-    referenzbildMatvorResize = convert::QImageToCvMat(referenzbildQImageGUI1);
+    //referenzbildMatvorResize = convert::QImageToCvMat(referenzbildQImageGUI);
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
-    referenzbildQImageGUI2 = convert::cvMatToQImage(referenzbildMatnachResize);
-    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI2));//display the image in referenzbildlabel
+    referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
+    ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
 
     livebildMatDetector = cv::imread("C:\\SP1\\scene1.png");// isp.getImage();
 

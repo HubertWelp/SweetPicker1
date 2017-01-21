@@ -87,6 +87,6 @@ int main(int argc, char *argv[])
     std::cout << "Ausgaben in Konsole moeglich" << std::endl;
     OLMainWindow w;
     w.show();
-
+    w.loadScene();
     return a.exec();
 }
