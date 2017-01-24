@@ -7,13 +7,27 @@ import time
 import almath
 import json
 
-Distanz = "Default"
-PolarWinkel = "Default"
 RobotIP = "192.168.0.79"
 RobotPORT = 9559
 
 Distanz = sys.argv[1]
 PolarWinkel = sys.argv[2]
+
+print(type(int(Distanz)))
+print(Distanz)
+print(type(PolarWinkel))
+print(PolarWinkel)
+
+D = "Default"
+P = "Default"
+
+
+D = int(Distanz)
+P = int(PolarWinkel)
+print(type(D))
+print(D)
+
+
 try:
     tts = ALProxy("ALTextToSpeech", RobotIP, RobotPORT)
 except Exception,e:
@@ -34,53 +48,19 @@ motionProxy.setStiffnesses("LArm", 0.3)
 
 # Anfang bewegung zu RP1
 names            = "LShoulderRoll"
-angles           = 37*almath.TO_RAD
+angles           = (D+12)*almath.TO_RAD
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
-time.sleep(3.0)
-    
-# Bewegung zu RP2
+# Anfang bewegung zu RP1
 names            = "LShoulderPitch"
-angles           = 72*almath.TO_RAD
-fractionMaxSpeed = 0.2
-motionProxy.setAngles(names,angles,fractionMaxSpeed)
-
-# Bewegung zu RP3
-names            = "LShoulderRoll"
-angles           = 34*almath.TO_RAD
+angles           = (100-(P*1.2))*almath.TO_RAD
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
 time.sleep(3.0)
 
-# Bewegung zu RP3
-names            = "LShoulderPitch"
-angles           = 75*almath.TO_RAD
-fractionMaxSpeed = 0.2
-motionProxy.setAngles(names,angles,fractionMaxSpeed)
-
-# Bewegung zu RP3
-names            = "LShoulderRoll"
-angles           = 2*almath.TO_RAD
-fractionMaxSpeed = 0.2
-motionProxy.setAngles(names,angles,fractionMaxSpeed)
-
-time.sleep(3.0)
-
-# Bewegung zu RP4
-names            = "LShoulderPitch"
-angles           = 100*almath.TO_RAD
-fractionMaxSpeed = 0.2
-motionProxy.setAngles(names,angles,fractionMaxSpeed)
-
-# Bewegung zu RP4
-names            = "LShoulderRoll"
-angles           = 3*almath.TO_RAD
-fractionMaxSpeed = 0.2
-motionProxy.setAngles(names,angles,fractionMaxSpeed)
-
-tts.say("Da ist der Schokoriegel. MARS!!!!")
+tts.say("Da ist der Schokoriegel. Mars")
 time.sleep(5.0)
 
 # Simple command for the LShoulderPitch joint at 10% max speed

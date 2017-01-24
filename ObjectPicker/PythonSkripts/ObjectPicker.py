@@ -17,15 +17,23 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
         try:
-                parsed_msg = json.loads(msg.payload)
+                msg2 = str(msg.payload)
+                nachricht = "Hallo"+msg2+"ende"
+                print(nachricht)
+                #msg_dumps = json.dumps(msg)
+                #print(msg_dumps)
+                parsed_msg = json.loads(msg2)
                 print(parsed_msg)
                 Distanz = parsed_msg['Distanz']
                 PolarWinkel = parsed_msg['PolarWinkel']
-                RotWinkel = parsed_msg['RotWinkel']
+                #Dz = int(Distanz)
+                #Pw = int(PolarWinkel)
+                #RotWinkel = parsed_msg['RotWinkel']
                 print (Distanz)
                 print (PolarWinkel)
-                print (RotWinkel)
-                ObjectPicker_zeigen(Distanz, PolarWinkel, RotWinkel)
+
+                #print (RotWinkel)
+                ObjectPicker_zeigen(Distanz,PolarWinkel)
                 
         except Exception,e:
 		print "auf on_massage ist ein fehler aufgetreten"
@@ -50,11 +58,11 @@ def ObjectPicker_reset():
 		print "Konnte das reset_Skript nicht starten"
 		print "Error war:  ",e
 		
-def ObjectPicker_zeigen(Distanz,PolarWinkel,RotWinkel):
+def ObjectPicker_zeigen(Distanz,PolarWinkel):
         try:
                 time.sleep(3.0)
                 
-                callstring = "Zeiger.py"+" "+Distanz+" "+PolarWinkel
+                callstring = "Zeiger.py"+" "+str(Distanz)+" "+str(PolarWinkel)
                 os.system(callstring)
         except Exception,e:
                 print "Konnte das zeigen_Skript nicht starten"
