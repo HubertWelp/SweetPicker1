@@ -54,7 +54,7 @@ motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
 # Anfang bewegung zu RP1
 names            = "LShoulderPitch"
-angles           = (100-(P*1.2))*almath.TO_RAD
+angles           = (100-(P))*almath.TO_RAD
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
