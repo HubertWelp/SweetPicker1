@@ -2,7 +2,7 @@
 
 ImageSnapperProxy::ImageSnapperProxy()
 {
-    this->setImagePath("C:\\SP1\\scene.bmp");
+    this->setImagePath("C:\\SP1\\scene.png");
 }
 
 void ImageSnapperProxy::setImagePath(string path)

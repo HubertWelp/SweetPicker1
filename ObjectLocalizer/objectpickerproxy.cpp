@@ -47,7 +47,7 @@ void ObjectPickerProxy::pick(PositionT pos)
 
     */
 
-    json = "{'Distanz' : " + diststr + ",'Orientierung' :  " + gradstr + " }";
+    json = "{\"Distanz\":" + diststr + ",\"PolarWinkel\":" + gradstr + "}";
     cout << json << endl;
 
     //MQTTNode::sendMsg(json);

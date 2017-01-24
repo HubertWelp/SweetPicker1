@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 /*** Zum Testen der MQTTNode-Klasse ************************/
 //    string nachricht;
 //    std::string received;
-//    nachricht = "Das soll veroeffentlich werden";
+//    nachricht = "{\"Distanz\":11,\"PolarWinkel\":35}";
 //
 //    MQTTNode::sendMsg(nachricht);
 //
@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
 
 
 /*** Zum Testen von opencv**********************************/
-    cv::Mat mat;
-    mat = cv::imread("D:\\Qt_logo.png");
+//    cv::Mat mat;
+//    mat = cv::imread("D:\\Qt_logo.png");
 
 //    cvNamedWindow("hoffentlichKlapptEs");
 //    cv::imshow("hoffentlichKlapptEs",mat);
@@ -72,9 +72,9 @@ int main(int argc, char *argv[])
     ObjectPickerProxy prox;
 
     test[0] = cvPoint(0,0);
-    test[1] = cvPoint(640,0);
-    test[2] = cvPoint(640,480);
-    test[3] = cvPoint(0,480);
+    test[1] = cvPoint(2592,0);
+    test[2] = cvPoint(2592,1944);
+    test[3] = cvPoint(0,1944);
 
     pos.setCorners(test);
     pos.getCenter();
@@ -84,7 +84,9 @@ int main(int argc, char *argv[])
 
 
 /***********************************************************/
-    std::cout << "Ausgaben in Konsole moeglich" << std::endl;
+//    std::cout << "Ausgaben in Konsole moeglich" << std::endl;
+    //system("start D:/Studium/6.Semester/Softwaretechnik/Implementierung/build-ImageSnapper-Desktop_Qt_5_2_1_MinGW_32bit-Debug/debug/ImageSnapper.exe");
+
     OLMainWindow w;
     w.show();
     w.loadScene();

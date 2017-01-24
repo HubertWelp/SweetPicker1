@@ -67,21 +67,23 @@ void OLMainWindow::loadScene()
     cv::Mat livebildMatnachResize;
     ImageSnapperProxy isp;
 
-    do
-    {
+    //do
+    //{
         livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");// isp.getImage();
         cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(500,300),0,0,cv::INTER_LINEAR);
         QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
         ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
 
         delay(1);
+/*
         slotmitSignalverbinden(ui->teasersButton,SIGNAL(OLMainWindow::on_teasersButton_clicked()));
         slotmitSignalverbinden(ui->bountyButton,SIGNAL(OLMainWindow::on_bountyButton_clicked()));
         slotmitSignalverbinden(ui->doveButton,SIGNAL(OLMainWindow::on_doveButton_clicked()));
         slotmitSignalverbinden(ui->milkyWayButton,SIGNAL(OLMainWindow::on_milkyWayButton_clicked()));
         slotmitSignalverbinden(ui->twixButton,SIGNAL(OLMainWindow::on_twixButton_clicked()));
         slotmitSignalverbinden(ui->snickersButton,SIGNAL(OLMainWindow::on_snickersButton_clicked()));
-    }while(1);
+*/
+    //}while(1);
 }
 
 
@@ -91,6 +93,7 @@ void OLMainWindow::start(cv::Mat referenzbild, cv::Mat livebild)
     SceneImage scene;
     FeatureImage feature;
     ObjectPickerProxy opp;
+    cv::Mat mitgruenenRahmen;
 
     //Referenz laden
 
@@ -106,8 +109,12 @@ void OLMainWindow::start(cv::Mat referenzbild, cv::Mat livebild)
     //Vergleich
     detec.compare(feature,scene);
 
-    QImage livebildQImage = convert::cvMatToQImage(scene.getImage());
-    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));//display the image in livebildlabel
+    mitgruenenRahmen = scene.getImage();
+    //QImage livebildQImage = convert::cvMatToQImage(scene.getImage());
+    //cv::imshow("Copyscene2",mitgruenenRahmen);
+    cv::imwrite("C://SP1//sceneMitRahmen.png",mitgruenenRahmen);
+    //livebildQImage.load("C://SP1//sceneMitRahmen.png");
+    //ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));//display the image in livebildlabel
 
 
     //Position senden
@@ -125,6 +132,9 @@ void OLMainWindow::on_teasersButton_clicked()
     cv::Mat livebildMatDetector;
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
+    cv::Mat mitgruenenRahmen;
+    SceneImage scene;
+    cv::Mat livebildMatnachResize;
 
     //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzTeasers.png");
@@ -145,6 +155,18 @@ void OLMainWindow::on_teasersButton_clicked()
     delay(2);
 
     ol.start(referenzbildMatvorResize,livebildMatDetector);
+
+    mitgruenenRahmen = scene.getImage();
+    QImage livebildQImage = convert::cvMatToQImage(scene.getImage());
+   // cv::imshow("Copyscene2",mitgruenenRahmen);
+    //cv::imwrite("C://SP1//sceneMitRahmen.png",mitgruenenRahmen);
+    //livebildQImage.load("C://SP1//sceneMitRahmen.png");
+    cv::Mat livebildMatvorResize = cv::imread("C:\\SP1\\sceneMitRahmen.png");
+    cv::resize(livebildMatvorResize,livebildMatnachResize ,cv::Size(500,384),0,0,cv::INTER_LINEAR);
+    livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
+    ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
+
+
 
     /*if(ol.start(referenzQImage,livebildMat) == false)
     //{
@@ -181,7 +203,9 @@ void OLMainWindow::on_snickersButton_clicked()
     cv::Mat referenzbildMatvorResize;
 
     //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
-    referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzSnickers.png");
+    //referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzSnickers.png");
+    referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzMars.png");
+
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
     ui->referenzbildLabel->setPixmap(QPixmap::fromImage(referenzbildQImageGUI));//display the image in referenzbildlabel
@@ -335,7 +359,7 @@ void OLMainWindow::on_bountyButton_clicked()
     cv::Mat referenzbildMatnachResize;
     cv::Mat referenzbildMatvorResize;
 
-    referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
+    //referenzbildQImageGUI.load(":/Referenzbilder/referenzTeasers.png");	// load and draw image
     referenzbildMatvorResize = cv::imread("C:\\SP1\\referenzBounty.png");
     cv::resize(referenzbildMatvorResize,referenzbildMatnachResize ,cv::Size(219,154),0,0,cv::INTER_LINEAR);
     referenzbildQImageGUI = convert::cvMatToQImage(referenzbildMatnachResize);
