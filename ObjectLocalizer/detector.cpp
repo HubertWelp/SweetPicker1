@@ -66,7 +66,7 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
       { if( matches[i].distance < 3*minDist )
          { goodMatches.push_back( matches[i]); }
       }
-/* TEST */
+/* TEST *
       cv::Mat img_matches;
       cv::drawMatches( object.getImage(), object.getKeypoints(), scene.getImage(), scene.getKeypoints(),
                    goodMatches, img_matches, cv::Scalar::all(-1), cv::Scalar::all(-1),
