@@ -22,7 +22,7 @@ void ObjectPickerProxy::pick(PositionT pos)
     ss << dist;
 
     string diststr = ss.str();
-    string clear;
+    string clear;Ent
     ss.str(clear);
     //Berechnung des Polarwinkels
 
