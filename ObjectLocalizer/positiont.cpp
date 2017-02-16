@@ -1,9 +1,5 @@
 #include "positiont.h"
 
-PositionT::PositionT()
-{
-}
-
 void PositionT::setCorners(vector<cv::Point2f> temp)
 {
     this->Corners = temp;
@@ -21,50 +17,60 @@ void PositionT::setCorners(vector<cv::Point2f> temp)
     cout << "BR : " << BR[0] << " | " << BR[1] << endl;
 
 }
-/*
-void PositionT::setTL(float* pos)
+
+vector<cv::Point2f> PositionT::getCorners()
 {
-    this->TL = pos;
+    return this->Corners;
 }
 
 
-float* PositionT::getTL()
+void PositionT::setTL(int x, int y)
+{
+    this->TL[0] = x;
+    this->TL[1] = y;
+}
+
+
+int* PositionT::getTL()
 {
     return this->TL;
 }
 
 
-void PositionT::setTR(vector<cv::Point2f> pos)
+void PositionT::setTR(int x, int y)
 {
-    this->TR = pos;
+    this->TR[0] = x;
+    this->TR[1] = y;
 }
 
-vector<cv::Point2f> PositionT::getTR()
+int* PositionT::getTR()
 {
     return this->TR;
 }
 
 
-void PositionT::setBL(vector<cv::Point2f> pos)
+void PositionT::setBL(int x, int y)
 {
-    this->BL = pos;
+    this->BL[0] = x;
+    this->BL[1] = y;
 }
 
-vector<cv::Point2f> PositionT::getBL()
+int* PositionT::getBL()
 {
     return this->BL;
 }
 
-void PositionT::setBR(vector<cv::Point2f> pos)
+void PositionT::setBR(int x, int y)
 {
-    this->BR = pos;
+    this->BR[0] = x;
+    this->BR[1] = y;
 }
 
-vector<cv::Point2f> PositionT::getBR()
+int* PositionT::getBR()
 {
     return this->BR;
 }
-*/
+
 int* PositionT::getCenter()
 {
     int cent[2];
@@ -84,7 +90,10 @@ int* PositionT::getCenter()
 *
 * @retval deg = Winkel zu horizontalachse des Objektes
 */
-float getOrientation()
+float PositionT::getOrientation()
 {
-
+    float grad = 0;
+    int* center = this->getCenter();
+    grad = atan2(center[0],center[1]) * (180/3.141);
+    return grad;
 }

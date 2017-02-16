@@ -10,78 +10,78 @@ using namespace std;
 class PositionT
 {
 public:
-    PositionT();
-private:
-
-    int TL[2];
-    int TR[2];
-    int BL[2];
-    int BR[2];
-    vector<cv::Point2f> Corners;
-
-
-public:
-
+    /**
+    * @brief Funktion setzt die Eckpunkte des gefundenen Objektes
+    *
+    * @param [in] pos = Eckpunkte des gefundenen Objektes
+    */
     void setCorners(vector<cv::Point2f> temp);
+
+    /**
+    * @brief Funktion liefert die Eckpunkte des gefundenen Objektes
+    *
+    * @retval Eckpunkte des Objektes
+    */
+    vector<cv::Point2f> getCorners();
 
     /**
     * @brief Funktion setzt den oberen linken Punkt des gefundenen Objektes
     *
-    * @param [in] pos = Koordinaten des Punktes
+    * @param [in] x,y = Koordinaten des Punktes
     */
-    void setTL(float* pos);
+    void setTL(int x, int y);
 
     /**
     * @brief Funktion liefert den oberen linken Punkt des gefundenen Objektes
     *
     * @retval Koordinaten des Punktes
     */
-    float* getTL();
+    int* getTL();
 
 
     /**
     * @brief Funktion setzt den oberen rechten Punkt des gefundenen Objektes
     *
-    * @param [in] pos = Koordinaten des Punktes
+    * @param [in] x,y = Koordinaten des Punktes
     */
-    void setTR(vector<cv::Point2f> pos);
+    void setTR(int x, int y);
 
     /**
     * @brief Funktion liefert den oberen rechten Punkt des gefundenen Objektes
     *
     * @retval Koordinaten des Punktes
     */
-    vector<cv::Point2f> getTR();
+    int* getTR();
 
 
     /**
     * @brief Funktion setzt den unteren linken Punkt des gefundenen Objektes
     *
-    * @param [in] pos = Koordinaten des Punktes
+    * @param [in] x,y = Koordinaten des Punktes
     */
-    void setBL(vector<cv::Point2f> pos);
+    void setBL(int x, int y);
 
     /**
     * @brief Funktion liefert den unteren linken Punkt des gefundenen Objektes
     *
     * @retval Koordinaten des Punktes
     */
-    vector<cv::Point2f> getBL();
+    int* getBL();
 
 
     /**
     * @brief Funktion setzt den unteren rechten Punkt des gefundenen Objektes
     *
-    * @param [in] pos = Koordinaten des Punktes
+    * @param [in] x,y = Koordinaten des Punktes
     */
-    void setBR(vector<cv::Point2f> pos);
+    void setBR(int x, int y);
 
     /**
     * @brief Funktion liefert den unteren rechten Punkt des gefundenen Objektes
     *
     * @retval Koordinaten des Punktes
     */
-    vector<cv::Point2f> getBR();
+    int* getBR();
 
     /**
     * @brief Funktion gibt den Mittelpunkt des gefundenen Objektes wieder
@@ -96,6 +96,14 @@ public:
     * @retval deg = Winkel zu horizontalachse des Objektes
     */
     float getOrientation();
+
+private:
+
+    int TL[2];
+    int TR[2];
+    int BL[2];
+    int BR[2];
+    vector<cv::Point2f> Corners;
 
 };
 
