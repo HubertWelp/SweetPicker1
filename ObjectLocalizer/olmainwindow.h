@@ -19,7 +19,7 @@ public:
     void start(cv::Mat referenzbild, cv::Mat livebild);
     void delay(int sec);
     void loadScene();
-    int slotmitSignalverbinden(QObject *sender, const char *signal);
+
 
 private slots:
 
@@ -81,6 +81,7 @@ private slots:
 
 private:
     Ui::OLMainWindow *ui;
+    bool verlasseSchleife = false;
 };
 
 #endif // OLMAINWINDOW_H

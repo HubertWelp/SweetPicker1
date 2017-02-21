@@ -23,8 +23,6 @@
 #include <QTime>
 #include <QObject>
 
-
-
 OLMainWindow::OLMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::OLMainWindow)
@@ -47,7 +45,6 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
 
 }
 
-
 OLMainWindow::~OLMainWindow()
 {
     delete ui;
@@ -59,7 +56,6 @@ void OLMainWindow::delay(int sec)
     while (QTime::currentTime() < dieTime)
     QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
-
 
 void OLMainWindow::loadScene()
 {
@@ -84,7 +80,6 @@ void OLMainWindow::loadScene()
         }
     }while(1);
 }
-
 
 void OLMainWindow::start(cv::Mat referenzbild, cv::Mat livebild)
 {
@@ -181,7 +176,6 @@ void OLMainWindow::on_teasersButton_clicked()
         ui->teasersButton->setEnabled(true);
     /}*/
 }
-
 
 void OLMainWindow::on_snickersButton_clicked()
 {
