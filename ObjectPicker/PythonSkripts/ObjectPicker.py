@@ -18,21 +18,12 @@ def on_connect(client, userdata, rc):
 def on_message(client, userdata, msg):
         try:
                 msg2 = str(msg.payload)
-                nachricht = "Hallo"+msg2+"ende"
-                print(nachricht)
-                #msg_dumps = json.dumps(msg)
-                #print(msg_dumps)
                 parsed_msg = json.loads(msg2)
                 print(parsed_msg)
                 Distanz = parsed_msg['Distanz']
                 PolarWinkel = parsed_msg['PolarWinkel']
-                #Dz = int(Distanz)
-                #Pw = int(PolarWinkel)
-                #RotWinkel = parsed_msg['RotWinkel']
                 print (Distanz)
                 print (PolarWinkel)
-
-                #print (RotWinkel)
                 ObjectPicker_zeigen(Distanz,PolarWinkel)
                 
         except Exception,e:

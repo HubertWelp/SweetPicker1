@@ -26,6 +26,9 @@ D = int(Distanz)
 P = int(PolarWinkel)
 print(type(D))
 print(D)
+print(type(P))
+print(P)
+
 
 
 try:
@@ -48,19 +51,28 @@ motionProxy.setStiffnesses("LArm", 0.3)
 
 # Anfang bewegung zu RP1
 names            = "LShoulderRoll"
-angles           = (D+12)*almath.TO_RAD
+angles           = (3+P)*almath.TO_RAD
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
+
 # Anfang bewegung zu RP1
 names            = "LShoulderPitch"
-angles           = (100-(P))*almath.TO_RAD
+angles           = (100-(50))*almath.TO_RAD
+fractionMaxSpeed = 0.2
+motionProxy.setAngles(names,angles,fractionMaxSpeed)
+
+time.sleep(1.0)
+
+# Anfang bewegung zu RP1
+names            = "LShoulderPitch"
+angles           = (100-D)*almath.TO_RAD
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names,angles,fractionMaxSpeed)
 
 time.sleep(3.0)
 
-tts.say("Da ist der Schokoriegel. Mars")
+tts.say("Da ist der Schokoriegel")
 time.sleep(5.0)
 
 # Simple command for the LShoulderPitch joint at 10% max speed
