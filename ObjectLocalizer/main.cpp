@@ -8,6 +8,7 @@
 #include "detector.h"
 #include "imagesnapperproxy.h"
 #include "objectpickerproxy.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[])
 {
@@ -41,15 +42,15 @@ int main(int argc, char *argv[])
     Detector detect;
     ImageSnapperProxy snapper;
     ObjectPickerProxy picker;
-    cv::Mat scene = cv::imread("C:\\opencv2.4.8\\scene2s.jpg");
-    cv::Mat obj = cv::imread("C:\\opencv2.4.8\\kitkats.jpg");
+    cv::Mat scene = cv::imread("C:\\SP1\\scene.png");
+    cv::Mat obj = cv::imread("C:\\SP1\\referenzTwix.png");
 
     //Referenz laden
     //cv::imshow("TEST",objTest.getImage());
     //objTest.setImage(cv::imread("referenzTwix.png"));
     //objTest.setImage(cv::imread("C:\\opencv2.4.8\\kitkats.jpg"));
     objTest.setImage(obj);
-    //detect.findKeypoints(objTest);
+    detect.findKeypoints(objTest);
 
     //Scene laden
     //scnTest.setImage(snapper.getImage());
@@ -85,7 +86,9 @@ int main(int argc, char *argv[])
 
 /***********************************************************/
 //    std::cout << "Ausgaben in Konsole moeglich" << std::endl;
-    //system("start D:/Studium/6.Semester/Softwaretechnik/Implementierung/build-ImageSnapper-Desktop_Qt_5_2_1_MinGW_32bit-Debug/debug/ImageSnapper.exe");
+    system("start D:/Implementierung/build-ImageSnapper-Desktop_Qt_5_2_1_MinGW_32bit-Debug/debug/ImageSnapper.exe");
+
+    sleep(2);
 
     OLMainWindow w;
     w.show();

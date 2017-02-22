@@ -8,13 +8,13 @@ void ObjectPickerProxy::pick(PositionT pos)
 {
     float center[2];
     //Transformation in cm
-    center[0] = pos.getCenter()[0] * 0.00694; // 18cm/1333px = 0.0135
-    center[1] = pos.getCenter()[1] * 0.00699; // 13,6cm/1000px = 0.0136
+    center[0] = pos.getCenter()[0] * 0.028125; // 18cm/1333px = 0.0135 18cm/640px = 0.028125
+    center[1] = pos.getCenter()[1] * 0.028333; // 13,6cm/1000px = 0.0136 13,6cm/480px = 0.028333
 
     cout << "x = " << center[0] << "cm | y = " << center[1] << "cm" <<  endl;
     //Berechnung der Distanz
 
-    float dist = 0;
+    int dist = 0;
 
     dist = sqrt(pow(center[0],2) + pow(center[1],2));
 
@@ -26,7 +26,7 @@ void ObjectPickerProxy::pick(PositionT pos)
     ss.str(clear);
     //Berechnung des Polarwinkels
 
-    float grad = 0;
+    int grad = 0;
 
     grad = pos.getOrientation();
 

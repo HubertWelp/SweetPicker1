@@ -22,6 +22,7 @@
 #include <QPixmap>
 #include <QTime>
 #include <QObject>
+#include <QThread>
 
 
 
@@ -37,13 +38,6 @@ OLMainWindow::OLMainWindow(QWidget *parent) :
 
     // Set QWidget as the central layout of the main window
     setCentralWidget(window);
-
-    connect(ui->teasersButton, SIGNAL(clicked()),this, SLOT(on_teasersButton_clicked()));
-    connect(ui->milkyWayButton, SIGNAL(clicked()),this, SLOT(on_milkyWayButton_clicked()));
-    connect(ui->snickersButton, SIGNAL(clicked()),this, SLOT(on_snickersButton_clicked()));
-    connect(ui->twixButton, SIGNAL(clicked()),this, SLOT(on_twixButton_clicked()));
-    connect(ui->doveButton, SIGNAL(clicked()),this, SLOT(on_doveButton_clicked()));
-    connect(ui->bountyButton, SIGNAL(clicked()),this, SLOT(on_bountyButton_clicked()));
 
 }
 
@@ -69,20 +63,21 @@ void OLMainWindow::loadScene()
 
     verlasseSchleife = false;
 
-    do
+    while(1)
     {
+
         livebildMatvorResize =  isp.getImage();//cv::imread("C:\\SP1\\scene.png");//
         cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
         QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
         ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
 
-        delay(1);
         QApplication::processEvents();
+        delay(1);
         if(verlasseSchleife)
         {
             break;
         }
-    }while(1);
+    }
 }
 
 
@@ -109,7 +104,7 @@ void OLMainWindow::start(cv::Mat referenzbild, cv::Mat livebild)
     cv::imwrite("C://SP1//sceneMitRahmen.png",mitgruenenRahmen);
 
     //Position senden
-    //opp.pick(scene.getPosition());
+    opp.pick(scene.getPosition());
 
 }
 
@@ -158,7 +153,6 @@ void OLMainWindow::on_teasersButton_clicked()
     cv::resize(livebildMatvorResize,livebildMatnachResize ,cv::Size(450,385),0,0,cv::INTER_LINEAR);
     livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
-
 
 
     /*if(ol.start(referenzQImage,livebildMat) == false)
