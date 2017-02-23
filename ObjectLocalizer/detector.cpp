@@ -95,7 +95,7 @@ void Detector::compare(FeatureImage& object, SceneImage& scene)
     cv::line( copyScene, sceneCorners[3], sceneCorners[0], cv::Scalar( 0, 255, 0), 4 );
 
     scene.setImage(copyScene);
-    cv::imshow("Copyscene",copyScene);
+    //cv::imshow("Copyscene",copyScene);
     temp.setCorners(sceneCorners);
     scene.setPosition(temp);
 }

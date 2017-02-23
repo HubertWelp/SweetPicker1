@@ -65,7 +65,11 @@ void OLMainWindow::loadScene()
 
     while(1)
     {
-
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
         livebildMatvorResize =  isp.getImage();//cv::imread("C:\\SP1\\scene.png");//
         cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
         QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
@@ -155,6 +159,38 @@ void OLMainWindow::on_teasersButton_clicked()
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
 
 
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
+
     /*if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
@@ -221,6 +257,38 @@ void OLMainWindow::on_snickersButton_clicked()
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
 
 
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
+
     /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
         s.sprintf("Leider konnte kein passendes Objekt detektiert werden");
@@ -282,6 +350,38 @@ void OLMainWindow::on_twixButton_clicked()
     cv::resize(livebildMatvorResize,livebildMatnachResize ,cv::Size(450,385),0,0,cv::INTER_LINEAR);
     livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
+
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
 
 
     /*/if(ol.start(referenzQImage,livebildMat) == false)
@@ -347,6 +447,38 @@ void OLMainWindow::on_doveButton_clicked()
     livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
 
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
+
 
     /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
@@ -410,6 +542,38 @@ void OLMainWindow::on_bountyButton_clicked()
     livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
 
+
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
 
     /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
@@ -475,6 +639,37 @@ void OLMainWindow::on_milkyWayButton_clicked()
     livebildQImage = convert::cvMatToQImage(livebildMatnachResize);
     ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImage));
 
+    delay(20);
+
+    ui->bountyButton->setEnabled(true);
+    ui->snickersButton->setEnabled(true);
+    ui->doveButton->setEnabled(true);
+    ui->twixButton->setEnabled(true);
+    ui->milkyWayButton->setEnabled(true);
+    ui->teasersButton->setEnabled(true);
+
+
+    verlasseSchleife = false;
+
+    while(1)
+    {
+        if(!isp.getImage().data)
+        {
+            cout << "Error reading images " << endl;
+            delay(1);
+        }
+        livebildMatvorResize = cv::imread("C:\\SP1\\scene.png");//
+        cv::resize(livebildMatvorResize,livebildMatnachResize,cv::Size(450,385),0,0,cv::INTER_LINEAR);
+        QImage livebildQImageGUI = convert::cvMatToQImage(livebildMatnachResize);
+        ui->livebildLabel->setPixmap(QPixmap::fromImage(livebildQImageGUI));//display the image in livebildlabel
+
+        QApplication::processEvents();
+        delay(1);
+        if(verlasseSchleife)
+        {
+            break;
+        }
+    }
 
     /*/if(ol.start(referenzQImage,livebildMat) == false)
     //{
